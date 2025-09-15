@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                <h1>Welkom {{ $user }}
+                <h1>Welkom Student</h1>
             </main>
         </div>
     </body>
