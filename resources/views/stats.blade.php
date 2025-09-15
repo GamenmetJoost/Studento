@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <h1>Welkom {{ $user }}
             </main>
         </div>
     </body>
