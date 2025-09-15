@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                <h1 class="white">Welkom Student</h1>
+                <h1 class="bg-white dark:bg-gray-800 shadow">Welkom Student</h1>
             </main>
         </div>
     </body>
