@@ -1,0 +1,118 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Leaderboard & Achievements') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12" x-data="{ open: false, badge: null }">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Leaderboard -->
+                <div class="md:col-span-2 bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+                        Leaderboard
+                    </h3>
+
+                    <!-- Dropdown filter -->
+                    <div class="mb-6">
+                        <label for="quiz" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Kies een vragenlijst:
+                        </label>
+                        <select id="quiz" name="quiz" class="rounded-lg border-gray-300 dark:bg-gray-700 dark:text-gray-200">
+                            <option value="all">Alle vragenlijsten</option>
+                            <option value="quiz1">Vragenlijst 1</option>
+                            <option value="quiz2">Vragenlijst 2</option>
+                            <option value="quiz3">Vragenlijst 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Leaderboard tabel -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">#</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Student</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Punten</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                <!-- Dummy data -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Alice</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">95</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">2</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Bob</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">87</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">3</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Charlie</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">78</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Achievements / Badges -->
+                <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+                        Badges & Achievements
+                    </h3>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Unlocked badge -->
+                        <div class="flex flex-col items-center cursor-pointer group"
+                             @click="open = true; badge = { name: 'Streak Master', description: 'Beantwoord 30 vragen op rij correct.', progress: 22, total: 30, unlocked: true }">
+                            <img src="https://via.placeholder.com/64/00FF00" alt="Badge" class="w-16 h-16 rounded-full border-2 border-green-500">
+                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Streak Master</span>
+                        </div>
+
+                        <!-- Unlocked badge -->
+                        <div class="flex flex-col items-center cursor-pointer group"
+                             @click="open = true; badge = { name: 'Quiz King', description: 'Maak 10 quizzes af.', progress: 10, total: 10, unlocked: true }">
+                            <img src="https://via.placeholder.com/64/FFD700" alt="Badge" class="w-16 h-16 rounded-full border-2 border-yellow-400">
+                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz King</span>
+                        </div>
+
+                        <!-- Locked badge -->
+                        <div class="flex flex-col items-center cursor-pointer group"
+                             @click="open = true; badge = { name: 'Fast Thinker', description: 'Beantwoord 20 vragen onder 10 seconden.', progress: 5, total: 20, unlocked: false }">
+                            <img src="https://via.placeholder.com/64/CCCCCC" alt="Badge" class="w-16 h-16 rounded-full border-2 border-gray-400 opacity-60">
+                            <span class="mt-2 text-sm text-gray-500 dark:text-gray-500">Fast Thinker</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Popup / Modal -->
+        <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+             x-cloak>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full p-6 relative">
+                <button @click="open = false" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">&times;</button>
+                
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200" x-text="badge?.name"></h3>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400" x-text="badge?.description"></p>
+
+                <!-- Alleen tonen progressie als locked of nog niet compleet -->
+                <template x-if="badge && badge.total > 0">
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-600 dark:text-gray-400" x-text="`Progressie: ${badge.progress}/${badge.total}`"></p>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700 mt-1">
+                            <div class="bg-blue-500 h-3 rounded-full" 
+                                 :style="`width: ${(badge.progress / badge.total) * 100}%`"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
