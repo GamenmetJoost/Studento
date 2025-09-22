@@ -31,11 +31,11 @@
 
                 @if(Auth::user() && Auth::user()->role === 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
-                        {{ __('Beheer gebruikers') }}
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                        {{ __('Admin Dashboard') }}
                     </x-nav-link>
                 </div>
-                @endif
+                @endif  
             </div>
 
             <!-- Settings Dropdown -->

@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminUserController;
 
 // Admin users resource route
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminUserController::class, 'index'])->name('index');
+    Route::get('dashboard', [AdminUserController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
 });
 
