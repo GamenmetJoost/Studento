@@ -2,7 +2,17 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 
+
+use App\Http\Controllers\AdminUserController;
+
+// Admin users resource route
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', AdminUserController::class);
+});
+
+// ...existing code...
 Route::get('/', function () {
     return view('welcome');
 });
