@@ -1,6 +1,8 @@
 <x-app-layout>
     <div class="container mx-auto py-8">
-        <h1 class="text-2xl font-bold mb-6">Admin Dashboard</h1>
+        <x-page-title>
+            Admin Dashboard
+        </x-page-title>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white p-6 rounded-lg shadow">
