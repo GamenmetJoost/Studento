@@ -1,5 +1,5 @@
 <x-app-layout>
-    <main class="h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
+    <main class="flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 py-12">
 
         <!-- Vraag teller -->
         <div class="mb-4 text-gray-900 dark:text-white text-lg font-semibold">

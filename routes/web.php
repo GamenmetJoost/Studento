@@ -40,6 +40,10 @@ Route::get('/leaderboard', function () {
     return view('leaderboard');
 })->middleware(['auth', 'verified'])->name('leaderboard');
 
+Route::get('/allquestions', function () {
+    return view('allquestions');
+})->middleware(['auth', 'verified'])->name('allquestions');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

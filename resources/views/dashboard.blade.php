@@ -4,22 +4,22 @@
     </x-page-title>
 
     <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-12 gap-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6">
 
             <!-- Linker kolom -->
-            <div class="col-span-8 space-y-6">
+            <div class="flex-1 flex flex-col gap-6">
 
                 <!-- Dagelijkse vragen + huidige vragenlijst -->
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="http://studento.test/stats" class="bg-gray-200 dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow block text-center">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="http://studento.test/stats" class="flex-1 bg-gray-200 dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow text-center">
                         Dagelijkse Vragen
                     </a>
-                    <a href="http://studento.test/stats" class="bg-gray-200 dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow block text-center">
+                    <a href="http://studento.test/stats" class="flex-1 bg-gray-200 dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow text-center">
                         Huidige Vragenlijst
                     </a>
                 </div>
 
-                <!-- Welkomstbericht i.p.v. Nog niet gedaan / Herhalen -->
+                <!-- Welkomstbericht -->
                 <div class="bg-gray-100 dark:bg-gray-800 dark:text-white p-6 rounded-lg shadow text-center">
                     <p class="text-lg font-semibold mb-2">Zo te zien ben je nog erg nieuw! 👋</p>
                     <p>Begin met een vragenlijst zodat ik je meer informatie kan tonen.</p>
@@ -27,28 +27,42 @@
             </div>
 
             <!-- Rechter kolom -->
-            <div class="col-span-4 space-y-6">
+            <div class="w-full lg:w-1/3 flex flex-col gap-6">
                 <!-- Thema’s lijst -->
                 <div class="bg-gray-100 dark:bg-gray-800 dark:text-white p-4 rounded-lg shadow">
                     <div class="text-center mb-4 font-semibold">Thema’s</div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 1</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 2</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 3</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 4</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 5</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 6</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 7</a>
-                        <a href="http://studento.test/stats" class="bg-gray-300 dark:bg-gray-600 p-4 rounded block text-center">Onderwerp 8</a>
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 1
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 2
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 3
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 4
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 5
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 6
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 7
+                        </a>
+                        <a href="http://studento.test/stats" class="flex-1 min-w-[120px] bg-gray-300 dark:bg-gray-600 p-4 rounded text-center">
+                            Onderwerp 8
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-        {{-- ✅ Popup alleen tonen bij first_login --}}
+    {{-- ✅ Popup alleen tonen bij first_login --}}
     @if(Auth::check() && Auth::user()->first_login)
         <div 
             x-data="{ open: true }" 
@@ -65,20 +79,20 @@
                     Kies de onderwerpen die je interessant vindt:
                 </p>
 
-                <div class="mb-4">
-                    <label class="flex items-center mb-2">
+                <div class="mb-4 flex flex-col gap-2">
+                    <label class="flex items-center">
                         <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
                         <span class="ml-2 text-gray-700 dark:text-gray-300">Onderwerp 1</span>
                     </label>
-                    <label class="flex items-center mb-2">
+                    <label class="flex items-center">
                         <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
                         <span class="ml-2 text-gray-700 dark:text-gray-300">Onderwerp 2</span>
                     </label>
-                    <label class="flex items-center mb-2">
+                    <label class="flex items-center">
                         <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
                         <span class="ml-2 text-gray-700 dark:text-gray-300">Onderwerp 3</span>
                     </label>
-                    <label class="flex items-center mb-2">
+                    <label class="flex items-center">
                         <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
                         <span class="ml-2 text-gray-700 dark:text-gray-300">Onderwerp 4</span>
                     </label>
