@@ -13,19 +13,6 @@
                         Leaderboard
                     </h3>
 
-                    <!-- Dropdown filter -->
-                    <div class="mb-6">
-                        <label for="quiz" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Kies een vragenlijst:
-                        </label>
-                        <select id="quiz" name="quiz" class="rounded-lg border-gray-300 dark:bg-gray-700 dark:text-gray-200">
-                            <option value="all">Alle vragenlijsten</option>
-                            <option value="quiz1">Vragenlijst 1</option>
-                            <option value="quiz2">Vragenlijst 2</option>
-                            <option value="quiz3">Vragenlijst 3</option>
-                        </select>
-                    </div>
-
                     <!-- Leaderboard tabel -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -37,22 +24,13 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700 text-white">
-                                <!-- Dummy data -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">1</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Alice</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">95</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">2</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Bob</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">87</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">3</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">Charlie</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">78</td>
-                                </tr>
+                                @foreach($leaderboard as $index => $player)
+                                    <tr @if($player->id === $currentUser->id) class="bg-blue-600" @endif>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $index + 1 }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $player->name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $player->points }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -91,7 +69,7 @@
             </div>
         </div>
 
-        <!-- Popup / Modal -->
+        <!-- Popup / Modal voor badges -->
         <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
              x-cloak>
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-md w-full p-6 relative">
@@ -100,7 +78,6 @@
                 <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200" x-text="badge?.name"></h3>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400" x-text="badge?.description"></p>
 
-                <!-- Alleen tonen progressie als locked of nog niet compleet -->
                 <template x-if="badge && badge.total > 0">
                     <div class="mt-4">
                         <p class="text-sm text-gray-600 dark:text-gray-400" x-text="`Progressie: ${badge.progress}/${badge.total}`"></p>
