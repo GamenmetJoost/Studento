@@ -62,18 +62,17 @@ class QtiImporter
         $itemBody = $item->xpath('.//qti:itemBody | .//itemBody')[0] ?? null;
         
         if ($itemBody) {
-            // Extract text from paragraphs and divs, handling CDATA
-            $questionText = '';
-            foreach ($itemBody->xpath('.//p | .//div') as $element) {
-                $text = (string) $element;
-                // Clean up the text
-                $text = strip_tags($text);
-                $text = trim($text);
-                if (!empty($text)) {
-                    $questionText .= $text . ' ';
-                }
+            // Prefer the first <div> and return it with its tags intact
+            $div = $itemBody->xpath('.//div')[0] ?? null;
+            if ($div) {
+            return trim($div->asXML());
             }
-            return trim($questionText) ?: 'Question text not found';
+            // If no <div> exists, return the first child element (preserve its tags)
+            foreach ($itemBody->children() as $child) {
+            return trim($child->asXML());
+            }
+            // No suitable element found
+            return '';
         }
         
         return 'Question text not found';
