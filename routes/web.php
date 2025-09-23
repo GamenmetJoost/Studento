@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImportController;
-
+use App\Http\Controllers\LeaderboardController;
 
 use App\Http\Controllers\AdminUserController;
 
@@ -36,9 +36,9 @@ Route::get('/stats', function () {
     return view('stats');
 })->middleware(['auth', 'verified'])->name('stats');
 
-Route::get('/leaderboard', function () {
-    return view('leaderboard');
-})->middleware(['auth', 'verified'])->name('leaderboard');
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('leaderboard');
 
 Route::get('/allquestions', function () {
     return view('allquestions');
