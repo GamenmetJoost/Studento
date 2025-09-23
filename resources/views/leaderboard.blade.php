@@ -1,9 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Leaderboard & Achievements') }}
-        </h2>
-    </x-slot>
+    <x-page-title>
+        Leaderboard & Achievements
+    </x-page-title>
 
     <div class="py-12" x-data="{ open: false, badge: null }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -33,12 +31,12 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">#</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Student</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Punten</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Student</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Punten</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700 text-white">
                                 <!-- Dummy data -->
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">1</td>
