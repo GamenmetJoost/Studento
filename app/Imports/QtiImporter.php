@@ -96,17 +96,12 @@ class QtiImporter
         $itemBody = $item->xpath('.//qti:itemBody | .//itemBody')[0] ?? null;
 
         if ($itemBody) {
-            // Prefer the first <div> and return it with its tags intact
-            $div = $itemBody->xpath('.//div')[0] ?? null;
-            if ($div) {
-            return trim($div->asXML());
+            $questionText = '';
+            foreach ($itemBody->xpath('.//p | .//div') as $element) {
+                $text = trim(strip_tags((string) $element));
+                if (!empty($text)) $questionText .= $text . ' ';
             }
-            // If no <div> exists, return the first child element (preserve its tags)
-            foreach ($itemBody->children() as $child) {
-            return trim($child->asXML());
-            }
-            // No suitable element found
-            return '';
+            return trim($questionText) ?: 'Question text not found';
         }
 
         return 'Question text not found';
