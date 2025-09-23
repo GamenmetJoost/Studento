@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-page-title>
-        Alle Questions
+        Alle vragen
     </x-page-title>
 
     <div class="py-8">
