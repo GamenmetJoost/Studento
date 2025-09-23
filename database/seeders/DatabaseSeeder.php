@@ -36,13 +36,14 @@ class DatabaseSeeder extends Seeder
         $this->importQuestionsFromFolder();
 
         // Example user IDs: 1, 2, 3 (make sure these users exist in your users table)
-        DB::table('quiz_results')->insert([
-            ['user_id' => User::factory()->create()->id, 'correct_answers' => rand(1,10), 'created_at' => now(), 'updated_at' => now()],
-            ['user_id' => User::factory()->create()->id, 'correct_answers' => rand(1,10), 'created_at' => now(), 'updated_at' => now()],
-            ['user_id' => User::factory()->create()->id, 'correct_answers' => rand(1,10), 'created_at' => now(), 'updated_at' => now()],
-            ['user_id' => User::factory()->create()->id, 'correct_answers' => rand(1,10), 'created_at' => now(), 'updated_at' => now()],
-            ['user_id' => User::factory()->create()->id, 'correct_answers' => rand(1,10), 'created_at' => now(), 'updated_at' => now()],
-        ]);
+        for ($i = 0; $i < 5; $i++) {
+            DB::table('quiz_results')->insert([
+                'user_id' => User::factory()->create()->id,
+                'correct_answers' => rand(1, 10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 
     /**
