@@ -42,12 +42,12 @@
                     @csrf
                     <div class="mb-4">
                         <label for="qti_file" class="block text-sm font-medium text-gray-700 mb-2">
-                            Upload QTI File (.xml)
+                            Upload QTI File (.xml of .zip)
                         </label>
                         <input type="file" 
                                name="qti_file" 
                                id="qti_file" 
-                               accept=".xml,.qti"
+                               accept=".xml,.zip,.qti"
                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                         @error('qti_file')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
