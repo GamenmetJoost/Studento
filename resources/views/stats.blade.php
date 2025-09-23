@@ -1,67 +1,81 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <x-page-title>
+        Welkom, {{ Auth::check() ? Auth::user()->name : 'Student' }}
+    </x-page-title>
 
-        <!-- Page Content -->
-        <main>
-            <x-page-title>
-                Welkom, {{ Auth::check() ? Auth::user()->name : 'Student' }}
-            </x-page-title>
-
-            <!-- Onderwerpen lijst met dropdowns -->
-            <div class="mt-10 flex justify-center">
-                <ul class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left">
-
-                    <!-- Onderwerp 1 -->
-                    <li x-data="{ open: false }" class="p-6 bg-gray-200 dark:bg-gray-700 rounded-lg shadow">
-                        <div class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white" @click="open = !open">
-                            Onderwerp 1
-                            <span class="text-2xl transform transition-transform" :class="{'rotate-180': open}">▼</span>
-                        </div>
-                        <ul x-show="open" x-transition class="mt-4 pl-4 space-y-2 text-gray-900 dark:text-white">
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp 1</li>
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp 2</li>
-                        </ul>
-                    </li>
-
-                    <!-- Onderwerp 2 -->
-                    <li x-data="{ open: false }" class="p-6 bg-gray-200 dark:bg-gray-700 rounded-lg shadow">
-                        <div class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white" @click="open = !open">
-                            Onderwerp 2
-                            <span class="text-2xl transform transition-transform" :class="{'rotate-180': open}">▼</span>
-                        </div>
-                        <ul x-show="open" x-transition class="mt-4 pl-4 space-y-2 text-gray-900 dark:text-white">
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp A</li>
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp B</li>
-                        </ul>
-                    </li>
-
-                    <!-- Onderwerp 3 -->
-                    <li x-data="{ open: false }" class="p-6 bg-gray-200 dark:bg-gray-700 rounded-lg shadow">
-                        <div class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white" @click="open = !open">
-                            Onderwerp 3
-                            <span class="text-2xl transform transition-transform" :class="{'rotate-180': open}">▼</span>
-                        </div>
-                        <ul x-show="open" x-transition class="mt-4 pl-4 space-y-2 text-gray-900 dark:text-white">
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp X</li>
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp Y</li>
-                        </ul>
-                    </li>
-
-                    <!-- Onderwerp 4 -->
-                    <li x-data="{ open: false }" class="p-6 bg-gray-200 dark:bg-gray-700 rounded-lg shadow">
-                        <div class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white" @click="open = !open">
-                            Onderwerp 4
-                            <span class="text-2xl transform transition-transform" :class="{'rotate-180': open}">▼</span>
-                        </div>
-                        <ul x-show="open" x-transition class="mt-4 pl-4 space-y-2 text-gray-900 dark:text-white">
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp M</li>
-                            <li class="p-2 rounded hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer">Subonderwerp N</li>
-                        </ul>
-                    </li>
-
-                </ul>
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            
+            <!-- Kaart 1 -->
+            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
+                <div class="flex justify-between items-center dropdown-toggle">
+                    <span>Onderwerp 1</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="dropdown-content hidden mt-4 space-y-2">
+                    <p>Subonderwerp A</p>
+                    <p>Subonderwerp B</p>
+                </div>
             </div>
 
-        </main>
+            <!-- Kaart 2 -->
+            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
+                <div class="flex justify-between items-center dropdown-toggle">
+                    <span>Onderwerp 2</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="dropdown-content hidden mt-4 space-y-2">
+                    <p>Subonderwerp A</p>
+                    <p>Subonderwerp B</p>
+                </div>
+            </div>
+
+            <!-- Kaart 3 -->
+            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
+                <div class="flex justify-between items-center dropdown-toggle">
+                    <span>Onderwerp 3</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="dropdown-content hidden mt-4 space-y-2">
+                    <p>Subonderwerp A</p>
+                    <p>Subonderwerp B</p>
+                </div>
+            </div>
+
+            <!-- Kaart 4 -->
+            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
+                <div class="flex justify-between items-center dropdown-toggle">
+                    <span>Onderwerp 4</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="dropdown-content hidden mt-4 space-y-2">
+                    <p>Subonderwerp A</p>
+                    <p>Subonderwerp B</p>
+                </div>
+            </div>
+
+        </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const dropdown = toggle.closest('.dropdown'); 
+                const content = dropdown.querySelector('.dropdown-content');
+                const arrow = toggle.querySelector('.arrow');
+
+                // Sluit alle andere dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(c => {
+                    if (c !== content) {
+                        c.classList.add('hidden');
+                        c.previousElementSibling.querySelector('.arrow').textContent = '▼';
+                    }
+                });
+
+                // Toggle alleen de huidige
+                content.classList.toggle('hidden');
+                arrow.textContent = content.classList.contains('hidden') ? '▼' : '▲';
+            });
+        });
+    </script>
 </x-app-layout>
