@@ -27,6 +27,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/question', function () {
+    return view('question');
+})->middleware(['auth', 'verified'])->name('question');
+
 Route::get('/stats', function () {
     return view('stats');
 })->middleware(['auth', 'verified'])->name('stats');
