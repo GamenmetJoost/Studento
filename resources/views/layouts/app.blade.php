@@ -29,7 +29,13 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{-- Oude systeem voor component layout --}}
+                @isset($slot)
+                    {{ $slot }}
+                @endisset
+
+                {{-- Nieuwe fallback voor section-based views --}}
+                @yield('content')
             </main>
         </div>
     </body>

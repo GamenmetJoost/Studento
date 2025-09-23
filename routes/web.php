@@ -1,13 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\LeaderboardController;
-
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\QuestionController;
 
 // Admin users resource route
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -19,41 +18,41 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Import route
 Route::post('/import', [ImportController::class, 'import'])->name('import')->middleware(['auth', 'admin']);
 
-// ...existing code...
+// Homepage
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/question', function () {
-    return view('question');
-})->middleware(['auth', 'verified'])->name('question');
-
+// Stats
 Route::get('/stats', function () {
     return view('stats');
 })->middleware(['auth', 'verified'])->name('stats');
 
+// Leaderboard
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('leaderboard');
 
-Route::get('/allquestions', function () {
-    return view('allquestions');
-})->middleware(['auth', 'verified'])->name('allquestions');
+// Vragen routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
+    Route::get('/questions/{question}', [QuestionController::class, 'show'])->name('question.show');
+});
 
+// Profiel routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Nieuwe route om first_login te updaten wanneer popup wordt gesloten
+    // Update first_login
     Route::post('/disable-first-login', [UserController::class, 'disableFirstLogin'])
         ->name('user.disableFirstLogin');
 });
-
-Route::post('/import', [ImportController::class, 'import'])->name('import');
 
 require __DIR__.'/auth.php';
