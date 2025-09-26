@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         // Import questions from XML and ZIP files
         $this->importQuestionsFromFolder();
 
-        // Example user IDs: 1, 2, 3 (make sure these users exist in your users table)
+        // Leaderboard dummy data
         for ($i = 0; $i < 5; $i++) {
             DB::table('quiz_results')->insert([
                 'user_id' => User::factory()->create()->id,

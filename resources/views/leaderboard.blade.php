@@ -34,6 +34,23 @@
                             </tbody>
                         </table>
                     </div>
+
+                    @if($currentUserPlacement)
+                        <div class="mt-6 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 text-blue-900 dark:text-blue-100">
+                            <strong>Jouw score:</strong>
+                            <div>
+                                <span>Plaats: <span class="font-bold">{{ $currentUserPlacement }}</span></span>
+                                <span class="mx-2">|</span>
+                                <span>Punten: <span class="font-bold">
+                                    {{ $leaderboard[$currentUserPlacement - 1]->points }}
+                                </span></span>
+                            </div>
+                        </div>
+                    @else
+                        <div class="mt-6 bg-gray-100 dark:bg-gray-900 rounded-lg p-4 text-gray-900 dark:text-gray-100">
+                            Je staat nog niet op het leaderboard.
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Achievements / Badges -->

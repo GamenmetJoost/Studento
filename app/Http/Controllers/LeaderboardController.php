@@ -37,9 +37,21 @@ class LeaderboardController extends Controller
         // Huidige gebruiker
         $currentUser = auth()->user();
 
+        // Zoek de plaats van de huidige gebruiker
+        $currentUserPlacement = $ranked->search(function ($player) use ($currentUser) {
+            return $player->id === $currentUser->id;
+        });
+
+        if ($currentUserPlacement !== false) {
+            $currentUserPlacement += 1; // 0-based to 1-based
+        } else {
+            $currentUserPlacement = null;
+        }
+
         return view('leaderboard', [
             'leaderboard' => $ranked,
             'currentUser' => $currentUser,
+            'currentUserPlacement' => $currentUserPlacement,
         ]);
     }
 }
