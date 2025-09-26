@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->importQuestionsFromFolder();
 
         // Leaderboard dummy data
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 55; $i++) {
             DB::table('quiz_results')->insert([
                 'user_id' => User::factory()->create()->id,
                 'correct_answers' => rand(1, 10),

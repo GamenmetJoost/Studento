@@ -44,14 +44,20 @@ class LeaderboardController extends Controller
 
         if ($currentUserPlacement !== false) {
             $currentUserPlacement += 1; // 0-based to 1-based
+            $currentUserScore = $ranked[$currentUserPlacement - 1]->points;
         } else {
             $currentUserPlacement = null;
+            $currentUserScore = null;
         }
 
+        // Only show top 10 in leaderboard
+        $topLeaderboard = $ranked->slice(0, 10);
+
         return view('leaderboard', [
-            'leaderboard' => $ranked,
+            'leaderboard' => $topLeaderboard,
             'currentUser' => $currentUser,
             'currentUserPlacement' => $currentUserPlacement,
+            'currentUserScore' => $currentUserScore,
         ]);
     }
 }
