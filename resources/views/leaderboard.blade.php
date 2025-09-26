@@ -13,6 +13,22 @@
                         Leaderboard
                     </h3>
 
+                    <!-- Current user's score and placement at the top -->
+                    @if($currentUserPlacement)
+                        <div class="mb-6 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 text-blue-900 dark:text-blue-100">
+                            <strong>Jouw score:</strong>
+                            <div>
+                                <span>Plaats: <span class="font-bold">{{ $currentUserPlacement }}</span></span>
+                                <span class="mx-2">|</span>
+                                <span>Punten: <span class="font-bold">{{ $currentUserScore }}</span></span>
+                            </div>
+                        </div>
+                    @else
+                        <div class="mb-6 bg-gray-100 dark:bg-gray-900 rounded-lg p-4 text-gray-900 dark:text-gray-100">
+                            Je staat nog niet op het leaderboard.
+                        </div>
+                    @endif
+
                     <!-- Leaderboard tabel -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
