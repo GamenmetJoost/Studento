@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Import questions from XML and ZIP files
-        $this->importQuestionsFromFolder();
+        $this->call(KennisquizSeeder::class);
 
-        // Example user IDs: 1, 2, 3 (make sure these users exist in your users table)
-        for ($i = 0; $i < 5; $i++) {
+        // Leaderboard dummy data
+        for ($i = 0; $i < 55; $i++) {
             DB::table('quiz_results')->insert([
                 'user_id' => User::factory()->create()->id,
                 'correct_answers' => rand(1, 10),

@@ -28,6 +28,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Vragen
+Route::get('/question', function () {
+    return view('question');
+})->middleware(['auth', 'verified'])->name('question');
+
+
 // Stats
 Route::get('/stats', function () {
     return view('stats');

@@ -9,12 +9,17 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $questions = Question::all();
+        // Haal alle vragen op en laad de categorie direct mee
+        $questions = Question::with('category')->paginate(15);
+
         return view('questions.index', compact('questions'));
     }
 
     public function show(Question $question)
     {
+        // Zorg dat de categorie ook hier beschikbaar is
+        $question->load('category');
+
         return view('questions.show', compact('question'));
     }
 }
