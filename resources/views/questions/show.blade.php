@@ -8,7 +8,7 @@
 
             <!-- Vraag titel -->
             <h2 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
-                {{ $question->question_text }}
+                Vraag: {{ $question->question_text }}
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
