@@ -29,19 +29,19 @@ class KennisquizSeeder extends Seeder
     private function seedCategories()
     {
         $categories = [
-            ['id' => 1, 'name' => 'Sociaal werk', 'subcategory' => 'Doelgroepen', 'folder_guid' => '3102d8f5-f1f1-4ee8-a668-e1befdf575ce'],
-            ['id' => 2, 'name' => 'Sociaal werk', 'subcategory' => 'Sociale Kaart', 'folder_guid' => 'f3aa1f3e-ecf1-4ecf-a1cf-0e21cef15b25'],
-            ['id' => 3, 'name' => 'Sociaal werk', 'subcategory' => 'Signalen herkennen', 'folder_guid' => '76313c62-779c-460b-987f-bd86edabcd5a'],
-            ['id' => 4, 'name' => 'Sociaal werk', 'subcategory' => 'Bezwaarschrift', 'folder_guid' => '4888c01f-c053-42b6-b806-3992c99d6b15'],
-            ['id' => 5, 'name' => 'Sociaal werk', 'subcategory' => 'Financiën en budget', 'folder_guid' => '9f17d796-5c85-4f29-8769-71da8e0ec836'],
-            ['id' => 6, 'name' => 'Sociaal werk', 'subcategory' => 'Social Media', 'folder_guid' => 'bd88a62c-8d4c-4647-b04c-d1422eff0a7e'],
-            ['id' => 7, 'name' => 'Sociaal werk', 'subcategory' => 'Gezondheid en welbevinden', 'folder_guid' => '4674293f-41cc-41e9-91f2-bd811c55eda5'],
-            ['id' => 8, 'name' => 'Sociaal werk', 'subcategory' => 'Gesprekstechnieken', 'folder_guid' => '087b9445-7a57-4016-b5cd-9df678a0f875'],
-            ['id' => 9, 'name' => 'Sociaal werk', 'subcategory' => 'Werkveld', 'folder_guid' => 'd2ef8e4a-be8c-4589-ba88-1686c99a9194'],
-            ['id' => 10, 'name' => 'Sociaal werk', 'subcategory' => 'Beroepsethiek', 'folder_guid' => '9eae44b6-762c-4014-ab86-f622eaa03305'],
-            ['id' => 11, 'name' => 'Sociaal werk', 'subcategory' => 'Reflectie', 'folder_guid' => '1779db32-db86-499e-b4a0-b612ae7bb5b8'],
-            ['id' => 12, 'name' => 'Sociaal werk', 'subcategory' => 'Stappen meldcode', 'folder_guid' => '152b7d06-7bba-44b3-8168-2936bd53e933'],
-            ['id' => 13, 'name' => 'Sociaal werk', 'subcategory' => 'Wijkgericht werken', 'folder_guid' => '0f74359d-73bc-42fd-8450-51e80ee5eae1']
+            ['id' => 1, 'sector' => 'Sociaal werk', 'category' => 'Doelgroepen', 'folder_guid' => '3102d8f5-f1f1-4ee8-a668-e1befdf575ce'],
+            ['id' => 2, 'sector' => 'Sociaal werk', 'category' => 'Sociale Kaart', 'folder_guid' => 'f3aa1f3e-ecf1-4ecf-a1cf-0e21cef15b25'],
+            ['id' => 3, 'sector' => 'Sociaal werk', 'category' => 'Signalen herkennen', 'folder_guid' => '76313c62-779c-460b-987f-bd86edabcd5a'],
+            ['id' => 4, 'sector' => 'Sociaal werk', 'category' => 'Bezwaarschrift', 'folder_guid' => '4888c01f-c053-42b6-b806-3992c99d6b15'],
+            ['id' => 5, 'sector' => 'Sociaal werk', 'category' => 'Financiën en budget', 'folder_guid' => '9f17d796-5c85-4f29-8769-71da8e0ec836'],
+            ['id' => 6, 'sector' => 'Sociaal werk', 'category' => 'Social Media', 'folder_guid' => 'bd88a62c-8d4c-4647-b04c-d1422eff0a7e'],
+            ['id' => 7, 'sector' => 'Sociaal werk', 'category' => 'Gezondheid en welbevinden', 'folder_guid' => '4674293f-41cc-41e9-91f2-bd811c55eda5'],
+            ['id' => 8, 'sector' => 'Sociaal werk', 'category' => 'Gesprekstechnieken', 'folder_guid' => '087b9445-7a57-4016-b5cd-9df678a0f875'],
+            ['id' => 9, 'sector' => 'Sociaal werk', 'category' => 'Werkveld', 'folder_guid' => 'd2ef8e4a-be8c-4589-ba88-1686c99a9194'],
+            ['id' => 10, 'sector' => 'Sociaal werk', 'category' => 'Beroepsethiek', 'folder_guid' => '9eae44b6-762c-4014-ab86-f622eaa03305'],
+            ['id' => 11, 'sector' => 'Sociaal werk', 'category' => 'Reflectie', 'folder_guid' => '1779db32-db86-499e-b4a0-b612ae7bb5b8'],
+            ['id' => 12, 'sector' => 'Sociaal werk', 'category' => 'Stappen meldcode', 'folder_guid' => '152b7d06-7bba-44b3-8168-2936bd53e933'],
+            ['id' => 13, 'sector' => 'Sociaal werk', 'category' => 'Wijkgericht werken', 'folder_guid' => '0f74359d-73bc-42fd-8450-51e80ee5eae1']
         ];
 
         foreach ($categories as $category) {

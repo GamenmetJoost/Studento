@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('subcategory')->nullable();
+            $table->string('sector')->nullable();
+            $table->string('category')->nullable();
             $table->string('folder_guid')->nullable();
             $table->timestamps();
             
             // Add unique constraint for the combination
-            $table->unique(['name', 'subcategory', 'folder_guid'], 'unique_category');
+            $table->unique(['sector', 'category', 'folder_guid'], 'unique_category');
         });
     }
 
@@ -29,5 +29,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('categories');
-    }
+}
 };
