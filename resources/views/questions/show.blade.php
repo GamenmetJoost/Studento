@@ -13,13 +13,26 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">ID:</span> {{ $question->id }}</p>
-                    <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Categorie:</span> {{ $question->category }}</p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        <span class="font-semibold">ID:</span> {{ $question->id }}
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        <span class="font-semibold">Categorie:</span>
+                        {{ $question->category?->name ?? 'Geen categorie' }}
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        <span class="font-semibold">Subcategorie:</span>
+                        {{ $question->category?->subcategory ?? 'Geen subcategorie' }}
+                    </p>
                 </div>
 
                 <div>
-                    <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Beschrijving:</span></p>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">{{ $question->description ?? 'Geen beschrijving beschikbaar.' }}</p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        <span class="font-semibold">Beschrijving:</span>
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                        {{ $question->description ?? 'Geen beschrijving beschikbaar.' }}
+                    </p>
                 </div>
             </div>
 

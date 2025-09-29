@@ -26,4 +26,15 @@ class Question extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    // Helper om makkelijk naam/subcategorie te tonen
+    public function getCategoryNameAttribute()
+    {
+        return $this->category?->name ?? '-';
+    }
+
+    public function getCategorySubcategoryAttribute()
+    {
+        return $this->category?->subcategory ?? '-';
+    }
 }
