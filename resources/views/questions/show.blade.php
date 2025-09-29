@@ -18,12 +18,12 @@
                         <span class="font-semibold">ID:</span> {{ $question->id }}
                     </p>
                     <p class="text-gray-700 dark:text-gray-300">
-                        <span class="font-semibold">Categorie:</span>
-                        {{ $question->category?->name ?? 'Geen categorie' }}
+                        <span class="font-semibold">Sector:</span>
+                        {{ $question->category?->sector ?? 'Geen sector' }}
                     </p>
                     <p class="text-gray-700 dark:text-gray-300">
-                        <span class="font-semibold">Subcategorie:</span>
-                        {{ $question->category?->subcategory ?? 'Geen subcategorie' }}
+                        <span class="font-semibold">Categorie:</span>
+                        {{ $question->category?->category ?? 'Geen categorie' }}
                     </p>
                 </div>
 

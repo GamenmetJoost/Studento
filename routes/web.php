@@ -7,6 +7,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DashboardController;
 
 // Admin users resource route
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -24,20 +25,19 @@ Route::get('/', function () {
 });
 
 // Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 // Vragen
 Route::get('/question', function () {
     return view('question');
 })->middleware(['auth', 'verified'])->name('question');
 
-
-// Stats
-Route::get('/stats', function () {
-    return view('stats');
-})->middleware(['auth', 'verified'])->name('stats');
+// Stats - aangepast naar controller zodat $categories beschikbaar is
+Route::get('/stats', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('stats');
 
 // Leaderboard
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])

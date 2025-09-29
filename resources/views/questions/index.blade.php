@@ -13,8 +13,8 @@
                             <tr>
                                 <th class="py-2 px-4 border-b text-left">ID</th>
                                 <th class="py-2 px-4 border-b text-left">Vraag</th>
+                                <th class="py-2 px-4 border-b text-left">Sector</th>
                                 <th class="py-2 px-4 border-b text-left">Categorie</th>
-                                <th class="py-2 px-4 border-b text-left">Subcategorie</th>
                                 <th class="py-2 px-4 border-b text-left">Inzien</th>
                             </tr>
                         </thead>
@@ -23,12 +23,8 @@
                                 <tr class="hover:bg-gray-100">
                                     <td class="py-2 px-4 border-b">{{ $question->id }}</td>
                                     <td class="py-2 px-4 border-b">{{ $question->question_text }}</td>
-                                    <td class="py-2 px-4 border-b">
-                                        {{ $question->category?->name ?? '' }}
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        {{ $question->category?->subcategory ?? '' }}
-                                    </td>
+                                    <td class="py-2 px-4 border-b">{{ $question->category?->sector ?? '' }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $question->category?->category ?? '' }}</td>
                                     <td class="py-2 px-4 border-b">
                                         <a href="{{ route('question.show', $question->id) }}" 
                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
@@ -51,7 +47,6 @@
                 <div class="mt-4">
                     {{ $questions->links() }}
                 </div>
-
             </div>
         </div>
     </div>
