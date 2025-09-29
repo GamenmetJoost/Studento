@@ -53,11 +53,44 @@ class LeaderboardController extends Controller
         // Only show top 10 in leaderboard
         $topLeaderboard = $ranked->slice(0, 10);
 
+        // Get all answers for the current user, ordered by time
+        $answers = DB::table('answers')
+            ->where('user_id', $currentUser->id)
+            ->orderBy('created_at')
+            ->pluck('is_correct');
+
+        // Calculate current streak
+        $currentStreak = 0;
+        foreach (array_reverse($answers->toArray()) as $isCorrect) {
+            if ($isCorrect) {
+                $currentStreak++;
+            } else {
+                break;
+            }
+        }
+
+        // Calculate highest streak
+        $highestStreak = 0;
+        $tempStreak = 0;
+        foreach ($answers as $isCorrect) {
+            if ($isCorrect) {
+                $tempStreak++;
+                if ($tempStreak > $highestStreak) {
+                    $highestStreak = $tempStreak;
+                }
+            } else {
+                $tempStreak = 0;
+            }
+        }
+
+        // Pass to view
         return view('leaderboard', [
             'leaderboard' => $topLeaderboard,
             'currentUser' => $currentUser,
             'currentUserPlacement' => $currentUserPlacement,
             'currentUserScore' => $currentUserScore,
+            'currentStreak' => $currentStreak,
+            'highestStreak' => $highestStreak,
         ]);
     }
 }

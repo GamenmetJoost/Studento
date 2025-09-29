@@ -61,7 +61,15 @@
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Unlocked badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
-                             @click="open = true; badge = { name: 'Streak Master', description: 'Beantwoord 30 vragen op rij correct.', progress: 22, total: 30, unlocked: true }">
+                            @click="open = true; badge = { 
+                                name: 'Streak Master', 
+                                description: 'Beantwoord 30 vragen op rij correct.', 
+                                progress: {{ $currentStreak }}, 
+                                total: 30, 
+                                unlocked: {{ $highestStreak >= 30 ? 'true' : 'false' }},
+                                currentStreak: {{ $currentStreak }},
+                                highestStreak: {{ $highestStreak }}
+                            }">
                             <img src="https://via.placeholder.com/64/00FF00" alt="Badge" class="w-16 h-16 rounded-full border-2 border-green-500">
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Streak Master</span>
                         </div>
@@ -101,6 +109,18 @@
                             <div class="bg-blue-500 h-3 rounded-full" 
                                  :style="`width: ${(badge.progress / badge.total) * 100}%`"></div>
                         </div>
+                    </div>
+                </template>
+
+                <!-- Add this block below the progress bar template -->
+                <template x-if="badge?.name === 'Streak Master'">
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            Huidige streak: <span x-text="badge.currentStreak"></span>
+                        </p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            Hoogste streak: <span x-text="badge.highestStreak"></span>
+                        </p>
                     </div>
                 </template>
             </div>
