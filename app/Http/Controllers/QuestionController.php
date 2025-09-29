@@ -22,4 +22,28 @@ class QuestionController extends Controller
 
         return view('questions.show', compact('question'));
     }
+
+    public function showByCategory(Request $request, $category_id)
+    {
+        // Zoek de categorie
+        $category = \App\Models\Category::findOrFail($category_id);
+        
+        // Haal alle vragen van deze categorie op
+        $questions = $category->questions()->with('choices')->get();
+        
+        // Check of er een specifieke vraag nummer is opgegeven
+        $vraagNummer = $request->get('vraag', 1); // Default naar vraag 1
+        
+        // Zorg dat het vraag nummer binnen de grenzen ligt
+        $vraagNummer = max(1, min($vraagNummer, $questions->count()));
+        
+        // Haal de specifieke vraag op (0-based index)
+        $currentQuestion = $questions->get($vraagNummer - 1);
+        
+        if (!$currentQuestion) {
+            abort(404, 'Vraag niet gevonden in deze categorie');
+        }
+        
+        return view('question', compact('category', 'questions', 'currentQuestion', 'vraagNummer'));
+    }
 }

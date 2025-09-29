@@ -29,10 +29,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Vragen
-Route::get('/question', function () {
-    return view('question');
-})->middleware(['auth', 'verified'])->name('question');
+// Toetsen - categorized questions
+Route::get('/toetsen/{category_id}', [QuestionController::class, 'showByCategory'])
+    ->middleware(['auth', 'verified'])
+    ->name('toetsen.category')
+    ->where('category_id', '[0-9]+');
 
 // Stats - aangepast naar controller zodat $categories beschikbaar is
 Route::get('/stats', [DashboardController::class, 'index'])
