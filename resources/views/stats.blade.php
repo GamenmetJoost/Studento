@@ -6,9 +6,9 @@
     <div class="py-8">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6">
             
-            <!-- Kaart 1 -->
-            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
-                <div class="flex justify-between items-center dropdown-toggle">
+            <!-- Kaart 1 - Blauw -->
+            <div class="bg-[#39B9EC] text-white p-6 rounded-lg cursor-pointer dropdown shadow-md">
+                <div class="flex justify-between items-center dropdown-toggle font-semibold">
                     <span>Onderwerp 1</span>
                     <span class="arrow">▼</span>
                 </div>
@@ -18,9 +18,9 @@
                 </div>
             </div>
 
-            <!-- Kaart 2 -->
-            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
-                <div class="flex justify-between items-center dropdown-toggle">
+            <!-- Kaart 2 - Roze -->
+            <div class="bg-[#E72B76] text-white p-6 rounded-lg cursor-pointer dropdown shadow-md">
+                <div class="flex justify-between items-center dropdown-toggle font-semibold">
                     <span>Onderwerp 2</span>
                     <span class="arrow">▼</span>
                 </div>
@@ -30,9 +30,9 @@
                 </div>
             </div>
 
-            <!-- Kaart 3 -->
-            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
-                <div class="flex justify-between items-center dropdown-toggle">
+            <!-- Kaart 3 - Groen -->
+            <div class="bg-[#CCD626] text-black p-6 rounded-lg cursor-pointer dropdown shadow-md">
+                <div class="flex justify-between items-center dropdown-toggle font-semibold">
                     <span>Onderwerp 3</span>
                     <span class="arrow">▼</span>
                 </div>
@@ -42,9 +42,9 @@
                 </div>
             </div>
 
-            <!-- Kaart 4 -->
-            <div class="bg-gray-700 p-6 rounded-lg cursor-pointer dropdown">
-                <div class="flex justify-between items-center dropdown-toggle">
+            <!-- Kaart 4 - Geel -->
+            <div class="bg-[#F2B300] text-black p-6 rounded-lg cursor-pointer dropdown shadow-md">
+                <div class="flex justify-between items-center dropdown-toggle font-semibold">
                     <span>Onderwerp 4</span>
                     <span class="arrow">▼</span>
                 </div>
