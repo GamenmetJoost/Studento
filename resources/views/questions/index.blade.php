@@ -12,7 +12,7 @@
                         <thead class="bg-white">
                             <tr>
                                 <th class="py-2 px-4 border-b text-left">ID</th>
-                                <th class="py-2 px-4 border-b text-left">Titel</th>
+                                <th class="py-2 px-4 border-b text-left">Vraag</th>
                                 <th class="py-2 px-4 border-b text-left">Categorie</th>
                                 <th class="py-2 px-4 border-b text-left">Subcategorie</th>
                                 <th class="py-2 px-4 border-b text-left">Inzien</th>
@@ -22,12 +22,12 @@
                             @forelse($questions as $question)
                                 <tr class="hover:bg-gray-100">
                                     <td class="py-2 px-4 border-b">{{ $question->id }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $question->title }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $question->question_text }}</td>
                                     <td class="py-2 px-4 border-b">
-                                        {{ is_array($question->category) ? ($question->category['name'] ?? '') : (json_decode($question->category, true)['name'] ?? '') }}
+                                        {{ $question->category?->name ?? '' }}
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        {{ is_array($question->category) ? ($question->category['subcategory'] ?? '') : (json_decode($question->category, true)['subcategory'] ?? '') }}
+                                        {{ $question->category?->subcategory ?? '' }}
                                     </td>
                                     <td class="py-2 px-4 border-b">
                                         <a href="{{ route('question.show', $question->id) }}" 
