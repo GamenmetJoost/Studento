@@ -13,42 +13,18 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                </div>
+                <x-nav-item route="dashboard" text="Dashboard" />
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('stats')" :active="request()->routeIs('stats')">
-                        {{ __('Statistieken') }}
-                    </x-nav-link>
-                </div>
+                <x-nav-item route="stats" text="Statistieken" />
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
-                        {{ __('Leaderboard') }}
-                    </x-nav-link>
-                </div>
+                <x-nav-item route="leaderboard" text="Leaderboard" />
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('question')" :active="request()->routeIs('question')">
-                        {{ __('Toetsen') }}
-                    </x-nav-link>
-                </div>
+                <x-nav-item route="question" text="Toetsen" />
 
                 @if(Auth::check() && Auth::user()->role === 'admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin Dashboard') }}
-                    </x-nav-link>
-                </div>
-                
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
-                        {{ __('Vragen') }}
-                    </x-nav-link>
-                </div>
+                    <x-nav-item route="admin.index" text="Admin Dashboard" />
+                    
+                    <x-nav-item route="questions.index" text="Vragen" />
                 @endif  
             </div>
 
@@ -103,36 +79,17 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+        <x-nav-item-responsive route="dashboard" text="Dashboard" />
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('stats')" :active="request()->routeIs('stats')">
-                {{ __('Statistieken') }}
-            </x-responsive-nav-link>
-        </div>
+        <x-nav-item-responsive route="question" text="Toetsen" />
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
-                {{ __('Leaderboard') }}
-            </x-responsive-nav-link>
-        </div>
+        <x-nav-item-responsive route="stats" text="Statistieken" />
 
+        <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
 
         @if(Auth::check() && Auth::user()->role === 'admin')
-            <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                    {{ __('Admin Dashboard') }}
-                </x-responsive-nav-link>
-            </div>
-            <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('questions.index')" :active="request()->routeIs('questions.index')">
-                    {{ __('Vragen') }}
-                </x-responsive-nav-link>
-            </div>
+            <x-nav-item-responsive route="admin.index" text="Admin Dashboard" />
+            <x-nav-item-responsive route="questions.index" text="Vragen" />
         @endif
 
         <!-- Responsive Settings Options -->
