@@ -31,6 +31,12 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('question')" :active="request()->routeIs('question')">
+                        {{ __('Toetsen') }}
+                    </x-nav-link>
+                </div>
+
                 @if(Auth::check() && Auth::user()->role === 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
@@ -114,6 +120,7 @@
                 {{ __('Leaderboard') }}
             </x-responsive-nav-link>
         </div>
+
 
         @if(Auth::check() && Auth::user()->role === 'admin')
             <div class="pt-2 pb-3 space-y-1">
