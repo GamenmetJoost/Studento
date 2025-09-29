@@ -12,18 +12,15 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- MARK: Navigation Links 
+                -->
                 <x-nav-item route="dashboard" text="Dashboard" />
-
                 <x-nav-item route="stats" text="Statistieken" />
-
                 <x-nav-item route="leaderboard" text="Leaderboard" />
-
                 <x-nav-item route="question" text="Toetsen" />
 
                 @if(Auth::check() && Auth::user()->role === 'admin')
                     <x-nav-item route="admin.index" text="Admin Dashboard" />
-                    
                     <x-nav-item route="questions.index" text="Vragen" />
                 @endif  
             </div>
@@ -77,14 +74,12 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
+    <!-- MARK: Responsive Navigation Menu
+    -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <x-nav-item-responsive route="dashboard" text="Dashboard" />
-
         <x-nav-item-responsive route="question" text="Toetsen" />
-
         <x-nav-item-responsive route="stats" text="Statistieken" />
-
         <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
 
         @if(Auth::check() && Auth::user()->role === 'admin')
