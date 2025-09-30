@@ -17,9 +17,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 // Import route
-Route::post('/import', [ImportController::class, 'import'])
-    ->name('import')
-    ->middleware(['auth', 'admin']);
+Route::post('/import', [ImportController::class, 'import'])->name('import')->middleware(['auth', 'admin']);
 
 // Homepage
 Route::get('/', function () {
@@ -32,10 +30,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 // Toetsen - categorized questions
-Route::get('/toetsen/{category}', [QuestionController::class, 'showByCategory'])
+Route::get('/toetsen/{category_id}', [QuestionController::class, 'showByCategory'])
     ->middleware(['auth', 'verified'])
     ->name('toetsen.category')
-    ->where('category', '[0-9]+');
+    ->where('category_id', '[0-9]+');
 
 // Toetsen - answer submission
 Route::post('/toetsen/{category_id}', [QuestionController::class, 'submitAnswer'])
