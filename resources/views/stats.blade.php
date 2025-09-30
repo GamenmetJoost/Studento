@@ -44,7 +44,14 @@
                                 <tbody>
                                     @foreach($category->user_quiz_attempts as $attempt)
                                         <tr>
-                                            <td class="py-2 px-4 border-b">{{ $attempt->finished_at ? $attempt->finished_at->format('d-m-Y H:i') : '-' }}</td>
+                                            <td class="py-2 px-4 border-b">
+                                                @php
+                                                    $userTz = Auth::user()?->timezone ?? 'Europe/Amsterdam';
+                                                    $dt = $attempt->finished_at ? $attempt->finished_at->timezone($userTz) : null;
+                                                @endphp
+                                                {{ $dt ? $dt->format('d-m-Y H:i') : '-' }}
+                                                <span class="text-xs text-gray-500">{{ $dt ? '(' . $dt->timezone->getName() . ')' : '' }}</span>
+                                            </td>
                                             <td class="py-2 px-4 border-b">{{ $attempt->score_percent }}%</td>
                                             <td class="py-2 px-4 border-b">{{ $attempt->correct_answers }}</td>
                                             <td class="py-2 px-4 border-b">{{ $attempt->total_questions }}</td>
