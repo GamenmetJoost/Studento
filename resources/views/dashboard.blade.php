@@ -38,9 +38,10 @@
                     <div class="grid grid-cols-2 gap-4">
                         @php
                             $colors = ['#39B9EC', '#E72B76', '#CCD626', '#F2B300'];
-                            $uniqueCategories = $categories->unique('category')->values();
+                            // Gebruik enkel de categorieën die de gebruiker heeft gekozen
+                            $userCategories = Auth::check() ? Auth::user()->categories : collect([]);
                         @endphp
-                        @foreach($uniqueCategories as $index => $category)
+                        @foreach($userCategories as $index => $category)
                             @php
                                 $color = $colors[intdiv($index, 2) % count($colors)];
                                 $textColor = in_array($color, ['#CCD626', '#F2B300']) ? 'black' : 'white';
@@ -77,6 +78,9 @@
                 <form method="POST" action="{{ route('user.disableFirstLogin') }}">
                     @csrf
                     <div class="mb-6 grid grid-cols-1 gap-3">
+                        @php
+                            $uniqueCategories = $categories->unique('category')->values();
+                        @endphp
                         @foreach($uniqueCategories as $index => $category)
                             @php
                                 $color = $colors[intdiv($index, 2) % count($colors)];
