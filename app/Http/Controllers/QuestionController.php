@@ -28,20 +28,20 @@ class QuestionController extends Controller
     {
         // Haal alle vragen van deze categorie op
         $questions = $category->questions()->with('choices')->get();
-        
+
         // Check of er een specifieke vraag nummer is opgegeven
         $vraagNummer = (int) $request->get('vraag', 1); // Default naar vraag 1
-        
+
         // Zorg dat het vraag nummer binnen de grenzen ligt
         $vraagNummer = max(1, min($vraagNummer, $questions->count()));
-        
+
         // Haal de specifieke vraag op (0-based index)
         $currentQuestion = $questions->get($vraagNummer - 1);
-        
+
         if (!$currentQuestion) {
             abort(404, 'Vraag niet gevonden in deze categorie');
         }
-        
+
         return view('questions.category', compact(
             'category',
             'questions',
