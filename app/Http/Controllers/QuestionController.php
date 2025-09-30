@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Category;
 
 class QuestionController extends Controller
 {
@@ -23,16 +24,13 @@ class QuestionController extends Controller
         return view('questions.show', compact('question'));
     }
 
-    public function showByCategory(Request $request, $category_id)
+    public function showByCategory(Request $request, Category $category)
     {
-        // Zoek de categorie
-        $category = \App\Models\Category::findOrFail($category_id);
-        
         // Haal alle vragen van deze categorie op
         $questions = $category->questions()->with('choices')->get();
         
         // Check of er een specifieke vraag nummer is opgegeven
-        $vraagNummer = $request->get('vraag', 1); // Default naar vraag 1
+        $vraagNummer = (int) $request->get('vraag', 1); // Default naar vraag 1
         
         // Zorg dat het vraag nummer binnen de grenzen ligt
         $vraagNummer = max(1, min($vraagNummer, $questions->count()));
@@ -44,6 +42,11 @@ class QuestionController extends Controller
             abort(404, 'Vraag niet gevonden in deze categorie');
         }
         
-        return view('question', compact('category', 'questions', 'currentQuestion', 'vraagNummer'));
+        return view('questions.category', compact(
+            'category',
+            'questions',
+            'currentQuestion',
+            'vraagNummer'
+        ));
     }
 }
