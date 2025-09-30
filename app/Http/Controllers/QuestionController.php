@@ -270,4 +270,38 @@ class QuestionController extends Controller
             'completed_at' => $payload['timestamp'],
         ]);
     }
+
+    public function showQuizAttemptResult(Request $request, $attemptId)
+    {
+        $attempt = \App\Models\QuizAttempt::with('category')->findOrFail($attemptId);
+        // Stel review-data samen uit QuizAttemptAnswer records
+        $answers = $attempt->answers()->with('question')->get();
+        $review = [];
+        foreach ($answers as $answer) {
+            $question = $answer->question;
+            $choices = $question->choices->map(function($choice) use ($answer) {
+                return [
+                    'identifier' => $choice->identifier,
+                    'text' => $choice->text,
+                    'is_correct' => $choice->is_correct,
+                    'is_selected' => $answer->selected_choice_id == $choice->id,
+                ];
+            })->toArray();
+            $review[] = [
+                'question_text' => $question->question_text,
+                'choices' => $choices,
+                'user_answer_is_correct' => $answer->is_correct,
+                'correct_choice_text' => $question->choices->where('is_correct', true)->first()?->text,
+                'fallback_boolean' => $question->type === 'boolean',
+                'fallback_selected' => $answer->selected_choice_id ? ($question->choices->find($answer->selected_choice_id)?->identifier) : null,
+            ];
+        }
+        return view('quiz_result', [
+            'category' => $attempt->category,
+            'score' => $attempt->correct_answers,
+            'total' => $attempt->total_questions,
+            'review' => $review,
+            'completed_at' => $attempt->finished_at,
+        ]);
+    }
 }

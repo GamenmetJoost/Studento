@@ -27,4 +27,12 @@ class Category extends Model
     {
         return $this->belongsToMany(User::class, 'category_user');
     }
+
+        /**
+         * Get the quiz attempts for this category.
+         */
+        public function quizAttempts()
+        {
+            return $this->hasMany(\App\Models\QuizAttempt::class);
+        }
 }

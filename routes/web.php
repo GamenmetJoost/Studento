@@ -44,6 +44,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/stats', [DashboardController::class, 'index'])->name('stats');
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
+    Route::get('/quiz-attempt/{attempt}', [QuestionController::class, 'showQuizAttemptResult'])
+        ->name('quiz_attempt.result')
+        ->where('attempt', '[0-9]+');
 
     // ------------------------
     // Toetsen - categorized questions

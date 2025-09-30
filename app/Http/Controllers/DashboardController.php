@@ -15,6 +15,12 @@ class DashboardController extends Controller
         // Alle categorieën ophalen die gekoppeld zijn aan minstens 1 vraag
         $categories = Category::whereHas('questions')->get();
 
+        $userId = auth()->id();
+        // Voeg quiz attempts van de gebruiker toe per categorie
+        foreach ($categories as $category) {
+            $category->user_quiz_attempts = $category->quizAttempts()->where('user_id', $userId)->get();
+        }
+
         // Kies view afhankelijk van route
         $view = request()->routeIs('stats') ? 'stats' : 'dashboard';
 
