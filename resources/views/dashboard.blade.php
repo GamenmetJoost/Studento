@@ -38,10 +38,11 @@
                     <div class="grid grid-cols-2 gap-4">
                         @php
                             $colors = ['#39B9EC', '#E72B76', '#CCD626', '#F2B300'];
-                            // Gebruik enkel de categorieën die de gebruiker heeft gekozen
                             $userCategories = Auth::check() ? Auth::user()->categories : collect([]);
+                            // Als gebruiker nog geen categorieën heeft, toon alle categorieën
+                            $displayCategories = $userCategories->isNotEmpty() ? $userCategories : $categories;
                         @endphp
-                        @foreach($userCategories as $index => $category)
+                        @foreach($displayCategories as $index => $category)
                             @php
                                 $color = $colors[intdiv($index, 2) % count($colors)];
                                 $textColor = in_array($color, ['#CCD626', '#F2B300']) ? 'black' : 'white';
