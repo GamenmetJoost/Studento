@@ -20,8 +20,8 @@
                 {{-- <x-nav-item route="question" text="Toetsen" /> --}}
 
                 @if(Auth::check() && Auth::user()->role === 'admin')
-                    <x-nav-item route="admin.index" text="Admin Dashboard" />
-                    <x-nav-item route="questions.index" text="Vragen" />
+                    <x-nav-item route="admin.index" text="Admin" />
+                    <x-nav-item route="admin.questions.index" text="Vragenbeheer" />
                 @endif  
             </div>
 
@@ -83,8 +83,8 @@
         <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
 
         @if(Auth::check() && Auth::user()->role === 'admin')
-            <x-nav-item-responsive route="admin.index" text="Admin Dashboard" />
-            <x-nav-item-responsive route="questions.index" text="Vragen" />
+            <x-nav-item-responsive route="admin.index" text="Admin" />
+            <x-nav-item-responsive route="admin.questions.index" text="Vragenbeheer" />
         @endif
 
         <!-- Responsive Settings Options -->

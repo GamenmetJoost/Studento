@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminQuestionController;
+use App\Http\Controllers\AdminChoiceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 
@@ -16,6 +18,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminUserController::class, 'index'])->name('index');
     Route::get('dashboard', [AdminUserController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
+    Route::resource('questions', AdminQuestionController::class)->except(['show']);
+    Route::post('questions/{question}/choices', [AdminChoiceController::class, 'store'])->name('choices.store');
+    Route::delete('choices/{choice}', [AdminChoiceController::class, 'destroy'])->name('choices.destroy');
 });
 
 // ------------------------
