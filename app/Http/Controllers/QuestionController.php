@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\QuizResult;
+use App\Models\QuizAttempt;
+use App\Models\QuizAttemptAnswer;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,11 +61,61 @@ class QuestionController extends Controller
         $category = \App\Models\Category::findOrFail($category_id);
         $question = Question::findOrFail($request->question_id);
 
-        // Bewaar selectie in sessie per categorie
+        // Initialiseer attempt indien nog niet bestaand
+        $attemptKey = 'quiz.category.' . $category_id . '.attempt_id';
+        $startedKey = 'quiz.category.' . $category_id . '.started_at';
+        $attemptId = Session::get($attemptKey);
+        if (!$attemptId) {
+            $attempt = QuizAttempt::create([
+                'user_id' => Auth::id(),
+                'category_id' => $category_id,
+                'total_questions' => $category->questions()->count(),
+                'answered_questions' => 0,
+                'correct_answers' => 0,
+                'score_percent' => 0,
+                'started_at' => now(),
+                'finished_at' => now(), // temporary, updated on finish
+                'duration_seconds' => 0,
+            ]);
+            $attemptId = $attempt->id;
+            Session::put($attemptKey, $attemptId);
+            Session::put($startedKey, now());
+        }
+
+        // Bewaar selectie in sessie per categorie (voor UX state)
         $key = 'quiz.category.' . $category_id . '.selections';
         $selections = Session::get($key, []);
         $selections[$question->id] = $request->answer; // store raw choice id or true/false
         Session::put($key, $selections);
+
+        // Sla per vraag antwoord op (upsert)
+        $existing = QuizAttemptAnswer::where('quiz_attempt_id', $attemptId)
+            ->where('question_id', $question->id)
+            ->first();
+        $wasCorrect = false;
+        if ($question->choices()->count() > 0) {
+            $choice = $question->choices()->where('id', $request->answer)->first();
+            $wasCorrect = $choice?->is_correct ?? false;
+        } else {
+            $wasCorrect = ($request->answer === 'true');
+        }
+        if ($existing) {
+            $existing->update([
+                'choice_id' => is_numeric($request->answer) ? $request->answer : null,
+                'answer_value' => !is_numeric($request->answer) ? $request->answer : null,
+                'was_correct' => $wasCorrect,
+                'answered_at' => now(),
+            ]);
+        } else {
+            QuizAttemptAnswer::create([
+                'quiz_attempt_id' => $attemptId,
+                'question_id' => $question->id,
+                'choice_id' => is_numeric($request->answer) ? $request->answer : null,
+                'answer_value' => !is_numeric($request->answer) ? $request->answer : null,
+                'was_correct' => $wasCorrect,
+                'answered_at' => now(),
+            ]);
+        }
 
         // Bepaal huidig vraag nummer voor redirect
         $questions = $category->questions()->pluck('id')->toArray();
@@ -84,6 +136,9 @@ class QuestionController extends Controller
 
         $key = 'quiz.category.' . $category_id . '.selections';
         $selections = Session::get($key, []);
+        $attemptKey = 'quiz.category.' . $category_id . '.attempt_id';
+        $startedKey = 'quiz.category.' . $category_id . '.started_at';
+        $attemptId = Session::get($attemptKey);
 
         $correct = 0;
         $total = $questions->count();
@@ -106,11 +161,31 @@ class QuestionController extends Controller
             }
         }
 
-        // Opslaan in quiz_results
-        QuizResult::create([
-            'user_id' => Auth::id(),
-            'correct_answers' => $correct
-        ]);
+        // Opslaan / bijwerken in quiz_results (aggregate legacy)
+        if ($correct > 0) {
+            QuizResult::create([
+                'user_id' => Auth::id(),
+                'correct_answers' => $correct
+            ]);
+        }
+
+        // Update attempt record indien aanwezig
+        if ($attemptId) {
+            $attempt = QuizAttempt::find($attemptId);
+            if ($attempt) {
+                $answeredCount = QuizAttemptAnswer::where('quiz_attempt_id', $attemptId)->count();
+                $correctCount = QuizAttemptAnswer::where('quiz_attempt_id', $attemptId)->where('was_correct', true)->count();
+                $startTime = Session::get($startedKey, now());
+                $duration = now()->diffInSeconds($startTime);
+                $attempt->update([
+                    'answered_questions' => $answeredCount,
+                    'correct_answers' => $correctCount,
+                    'score_percent' => $total > 0 ? round(($correctCount / $total) * 100, 2) : 0,
+                    'finished_at' => now(),
+                    'duration_seconds' => $duration,
+                ]);
+        }
+        }
 
         // Bouw review data
         $review = [];
@@ -149,8 +224,10 @@ class QuestionController extends Controller
             'timestamp' => now(),
         ]);
 
-        // Clear alleen de selections, laat review aanwezig voor GET result
-        Session::forget($key);
+    // Clear alleen de selections & attempt meta, laat review aanwezig voor GET result
+    Session::forget($key);
+    Session::forget($attemptKey);
+    Session::forget($startedKey);
 
         return redirect()->route('toetsen.result', ['category_id' => $category_id]);
     }
