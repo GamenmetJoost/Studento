@@ -35,7 +35,25 @@ Route::get('/toetsen/{category_id}', [QuestionController::class, 'showByCategory
     ->name('toetsen.category')
     ->where('category_id', '[0-9]+');
 
-// Stats - aangepast naar controller zodat $categories beschikbaar is
+// Toetsen - answer submission
+Route::post('/toetsen/{category_id}', [QuestionController::class, 'submitAnswer'])
+    ->middleware(['auth', 'verified'])
+    ->name('toetsen.submit')
+    ->where('category_id', '[0-9]+');
+
+// Toetsen - final submission of entire test
+Route::post('/toetsen/{category_id}/finish', [QuestionController::class, 'finishCategoryQuiz'])
+    ->middleware(['auth', 'verified'])
+    ->name('toetsen.finish')
+    ->where('category_id', '[0-9]+');
+
+// Toetsen - result page after finishing
+Route::get('/toetsen/{category_id}/result', [QuestionController::class, 'showCategoryResult'])
+    ->middleware(['auth', 'verified'])
+    ->name('toetsen.result')
+    ->where('category_id', '[0-9]+');
+
+// Stats 
 Route::get('/stats', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('stats');
