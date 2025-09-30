@@ -52,6 +52,27 @@ class QuestionController extends Controller
         return view('question', compact('category', 'questions', 'currentQuestion', 'vraagNummer'));
     }
 
+    public function toggleMark(Request $request, $category_id)
+    {
+        $request->validate([
+            'question_id' => 'required|exists:questions,id',
+            'vraag' => 'nullable|integer|min:1'
+        ]);
+        $markKey = 'quiz.category.' . $category_id . '.marked';
+        $marked = Session::get($markKey, []);
+        $qid = (int) $request->question_id;
+        if (in_array($qid, $marked)) {
+            $marked = array_values(array_filter($marked, fn($m) => (int)$m !== $qid));
+        } else {
+            $marked[] = $qid;
+        }
+        Session::put($markKey, $marked);
+        return redirect()->route('toetsen.category', [
+            'category_id' => $category_id,
+            'vraag' => $request->get('vraag')
+        ]);
+    }
+
     public function submitAnswer(Request $request, $category_id)
     {
         $request->validate([

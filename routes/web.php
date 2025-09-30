@@ -41,6 +41,12 @@ Route::post('/toetsen/{category_id}', [QuestionController::class, 'submitAnswer'
     ->name('toetsen.submit')
     ->where('category_id', '[0-9]+');
 
+// Toetsen - toggle mark question
+Route::post('/toetsen/{category_id}/mark', [QuestionController::class, 'toggleMark'])
+    ->middleware(['auth', 'verified'])
+    ->name('toetsen.mark')
+    ->where('category_id', '[0-9]+');
+
 // Toetsen - final submission of entire test
 Route::post('/toetsen/{category_id}/finish', [QuestionController::class, 'finishCategoryQuiz'])
     ->middleware(['auth', 'verified'])

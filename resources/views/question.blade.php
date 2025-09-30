@@ -31,6 +31,19 @@
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white whitespace-pre-line">
                 {{ $currentQuestion->question_text }}
             </h2>
+            @php
+                $marked = session('quiz.category.' . $category->id . '.marked', []);
+                $isMarked = in_array($currentQuestion->id, $marked);
+            @endphp
+            <form method="POST" action="{{ route('toetsen.mark', ['category_id' => $category->id]) }}" class="mt-4 inline-block">
+                @csrf
+                <input type="hidden" name="question_id" value="{{ $currentQuestion->id }}">
+                <input type="hidden" name="vraag" value="{{ $vraagNummer }}">
+                <button type="submit" class="px-3 py-1 rounded text-sm font-medium transition
+                    {{ $isMarked ? 'bg-amber-500 hover:bg-amber-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                    {{ $isMarked ? 'Gemarkeerd ✱' : 'Markeren' }}
+                </button>
+            </form>
         </div>
 
         <!-- Antwoorden -->
@@ -96,6 +109,41 @@
                     <button type="submit" class="px-6 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 shadow">Afronden &amp; Inleveren</button>
                 </form>
             @endif
+        </div>
+
+        <!-- Vragen overzicht -->
+        <div class="mt-10 w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Vragenoverzicht</h3>
+            @php
+                $selections = session('quiz.category.' . $category->id . '.selections', []);
+                $marked = session('quiz.category.' . $category->id . '.marked', []);
+            @endphp
+            <div class="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-12 gap-2 text-sm">
+                @foreach($questions as $idx => $q)
+                    @php
+                        $num = $idx + 1;
+                        $answered = array_key_exists($q->id, $selections);
+                        $isMarked = in_array($q->id, $marked);
+                        $isCurrent = $num === (int)$vraagNummer;
+                    @endphp
+                    <a href="{{ route('toetsen.category', ['category_id' => $category->id, 'vraag' => $num]) }}"
+                       class="relative flex items-center justify-center h-10 rounded border text-xs font-medium transition
+                        {{ $isCurrent ? 'ring-2 ring-blue-500 border-blue-500' : 'border-gray-300 dark:border-gray-600' }}
+                        {{ $answered ? 'bg-emerald-100 dark:bg-emerald-600/30 text-emerald-800 dark:text-emerald-200' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300' }}
+                        hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-600/30">
+                        {{ $num }}
+                        @if($isMarked)
+                            <span class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-500 border border-white dark:border-gray-800"></span>
+                        @endif
+                    </a>
+                @endforeach
+            </div>
+            <div class="mt-4 flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-emerald-200 border border-emerald-400 inline-block"></span> Beantwoord</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 inline-block"></span> Onbeantwoord</div>
+                <div class="flex items-center gap-1 relative"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 inline-block relative"><span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-500 border border-white"></span></span> Gemarkeerd</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-white border-2 border-blue-500 inline-block"></span> Huidige</div>
+            </div>
         </div>
 
     </main>
