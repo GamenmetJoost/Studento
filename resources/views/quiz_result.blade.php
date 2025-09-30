@@ -10,7 +10,11 @@
                 <p class="mt-1 text-sm text-gray-500">{{ number_format(($score / max(1,$total)) * 100, 1) }}% juist</p>
             </div>
             <div class="text-sm text-gray-500 dark:text-gray-400">
-                Ingeleverd op: {{ $completed_at }}
+                @php
+                    $userTz = auth()->user()->timezone ?? 'Europe/Amsterdam';
+                    $dt = \Carbon\Carbon::parse($completed_at, 'UTC')->timezone($userTz);
+                @endphp
+                Ingeleverd op: {{ $dt->format('d-m-Y H:i') }} <span class="text-xs">({{ $dt->timezone->getName() }})</span>
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('toetsen.category', ['category_id' => $category->id]) }}" class="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">Opnieuw maken</a>

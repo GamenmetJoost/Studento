@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
         'first_login', // ✅ toegevoegd
+        'timezone',
     ];
 
     /**
