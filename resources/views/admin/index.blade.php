@@ -66,6 +66,9 @@
                     <a href="{{ route('admin.users.index') }}" class="block bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600 text-center">
                         Beheer Gebruikers
                     </a>
+                    <a href="{{ route('admin.questions.index') }}" class="block bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 text-center">
+                        Beheer Vragen
+                    </a>
                 </div>
             </div>
         </div>
