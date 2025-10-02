@@ -86,7 +86,6 @@
 
         @if(Auth::check() && Auth::user()->role === 'admin')
             <x-nav-item-responsive route="admin.index" text="Admin" />
-            <x-nav-item-responsive route="admin.questions.index" text="Vragenbeheer" />
         @endif
 
         <!-- Responsive Settings Options -->
