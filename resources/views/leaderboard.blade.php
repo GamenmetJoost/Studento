@@ -59,20 +59,22 @@
                     </h3>
 
                     <div class="grid grid-cols-3 gap-4">
-                        <!-- Unlocked badge -->
+                        
+                        <!-- 50 Correcte Vragen Badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
                             @click="open = true; badge = { 
-                                name: 'Streak Master', 
-                                description: 'Beantwoord 30 vragen op rij correct.', 
-                                progress: {{ $currentStreak }}, 
-                                total: 30, 
-                                unlocked: {{ $highestStreak >= 30 ? 'true' : 'false' }},
-                                currentStreak: {{ $currentStreak }},
-                                highestStreak: {{ $highestStreak }}
+                                name: 'Answer Hero', 
+                                description: 'Beantwoord 50 correcte vragen.', 
+                                progress: {{ $correctAnswers }}, 
+                                total: 50, 
+                                unlocked: {{ $has50Badge ? 'true' : 'false' }} 
                             }">
-                            <img src="https://via.placeholder.com/64/00FF00" alt="Badge" class="w-16 h-16 rounded-full border-2 border-green-500">
-                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Streak Master</span>
+                            <img src="https://via.placeholder.com/64/{{ $has50Badge ? '00FF00' : 'CCCCCC' }}" 
+                                alt="Badge" 
+                                class="w-16 h-16 rounded-full border-2 {{ $has50Badge ? 'border-green-500' : 'border-gray-400 opacity-60' }}">
+                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Answer Hero</span>
                         </div>
+
 
                         <!-- Unlocked badge -->
                         <div class="flex flex-col items-center cursor-pointer group"

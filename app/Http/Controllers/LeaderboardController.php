@@ -83,6 +83,10 @@ class LeaderboardController extends Controller
             }
         }
 
+        $has50Badge = $currentUserScore >= 50;
+
+        
+
         // Pass to view
         return view('leaderboard', [
             'leaderboard' => $topLeaderboard,
@@ -91,6 +95,10 @@ class LeaderboardController extends Controller
             'currentUserScore' => $currentUserScore,
             'currentStreak' => $currentStreak,
             'highestStreak' => $highestStreak,
+            'has50Badge' => $has50Badge,
+            'correctAnswers' => $currentUserScore ?? 0,
+            'has50Badge' => ($currentUserScore ?? 0) >= 50,
+
         ]);
     }
 }
