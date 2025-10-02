@@ -15,9 +15,9 @@
                        class="bg-[#39B9EC] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
                         Dagelijkse Vragen
                     </a>
-                    <a href="{{ url('/stats') }}" 
+                    <a href="{{ url('/leaderboard') }}" 
                        class="bg-[#E72B76] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
-                        Huidige Vragenlijst
+                        Leaderboard
                     </a>
                 </div>
 

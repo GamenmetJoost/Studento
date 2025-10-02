@@ -75,8 +75,7 @@
         </div>
     </div>
 
-    <!-- MARK: Responsive Navigation Menu
-    -->
+    <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <x-nav-item-responsive route="dashboard" text="Dashboard" />
         {{-- <x-nav-item-responsive route="question" text="Toetsen" /> --}}
