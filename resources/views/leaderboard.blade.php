@@ -75,19 +75,19 @@
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Answer Hero</span>
                         </div>
 
-
-                        <!-- Unlocked badge -->
-                    <div class="flex flex-col items-center cursor-pointer group"
-                        @click="open = true; badge = { name: 'Quiz Koning', description: 'Maak 10 toetsen af.', progress: 10, total: 10, unlocked: true }">
-                            <img src="https://via.placeholder.com/64/FFD700" alt="Badge" class="w-16 h-16 rounded-full border-2 border-yellow-400">
-                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz Koning</span>
-                        </div>
-
-                        <!-- Locked badge -->
-                    <div class="flex flex-col items-center cursor-pointer group"
-                        @click="open = true; badge = { name: 'Snelle denker', description: 'Beantwoord 20 vragen in minder dan 10 seconden.', progress: 5, total: 20, unlocked: false }">
-                            <img src="https://via.placeholder.com/64/CCCCCC" alt="Badge" class="w-16 h-16 rounded-full border-2 border-gray-400 opacity-60">
-                            <span class="mt-2 text-sm text-gray-500 dark:text-gray-500">Snelle denker</span>
+                        <!-- Quiz Master Badge -->
+                        <div class="flex flex-col items-center cursor-pointer group"
+                            @click="open = true; badge = { 
+                                name: 'Quiz Master', 
+                                description: 'Maak 10 quizzes af.', 
+                                progress: {{ $quizAttempts ?? 0 }}, 
+                                total: 10, 
+                                unlocked: {{ $hasQuizMasterBadge ? 'true' : 'false' }} 
+                            }">
+                            <img src="https://via.placeholder.com/64/{{ $hasQuizMasterBadge ? 'FFD700' : 'CCCCCC' }}" 
+                                alt="Badge" 
+                                class="w-16 h-16 rounded-full border-2 {{ $hasQuizMasterBadge ? 'border-yellow-400' : 'border-gray-400 opacity-60' }}">
+                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz Master</span>
                         </div>
                     </div>
                 </div>
