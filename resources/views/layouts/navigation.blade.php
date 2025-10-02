@@ -12,17 +12,31 @@
                     </a>
                 </div>
 
-                <!-- MARK: Navigation Links 
-                -->
-                <x-nav-item route="dashboard" text="Dashboard" />
-                <x-nav-item route="stats" text="Statistieken" />
-                <x-nav-item route="leaderboard" text="Leaderboard" />
-                {{-- <x-nav-item route="question" text="Toetsen" /> --}}
+                <!-- Navigation Links -->
+                @php
+                    $navItems = [
+                        ['route' => 'dashboard', 'text' => 'Home'],
+                        ['route' => 'stats', 'text' => 'Statistieken'],
+                        ['route' => 'leaderboard', 'text' => 'Leaderboard'],
+                    ];
+                    if(Auth::check() && Auth::user()->role === 'admin') {
+                        $navItems[] = ['route' => 'admin.index', 'text' => 'Admin'];
+                        $navItems[] = ['route' => 'admin.questions.index', 'text' => 'Vragenbeheer'];
+                    }
+                @endphp
 
-                @if(Auth::check() && Auth::user()->role === 'admin')
-                    <x-nav-item route="admin.index" text="Admin" />
-                    <x-nav-item route="admin.questions.index" text="Vragenbeheer" />
-                @endif  
+                @foreach($navItems as $item)
+                    @php
+                        $isActive = request()->routeIs($item['route']);
+                    @endphp
+                    <a href="{{ route($item['route']) }}"
+                       class="inline-flex items-center px-3 pt-1 pb-3 text-sm font-medium leading-5
+                              {{ $isActive 
+                                  ? 'border-b-2 border-[#39B9EC] text-gray-900 dark:text-white' 
+                                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200' }}">
+                        {{ $item['text'] }}
+                    </a>
+                @endforeach
             </div>
 
             <!-- Settings Dropdown -->
@@ -74,18 +88,20 @@
         </div>
     </div>
 
-    <!-- MARK: Responsive Navigation Menu
-    -->
+    <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <x-nav-item-responsive route="dashboard" text="Dashboard" />
-        {{-- <x-nav-item-responsive route="question" text="Toetsen" /> --}}
-        <x-nav-item-responsive route="stats" text="Statistieken" />
-        <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
-
-        @if(Auth::check() && Auth::user()->role === 'admin')
-            <x-nav-item-responsive route="admin.index" text="Admin" />
-            <x-nav-item-responsive route="admin.questions.index" text="Vragenbeheer" />
-        @endif
+        @foreach($navItems as $item)
+            @php
+                $isActive = request()->routeIs($item['route']);
+            @endphp
+            <a href="{{ route($item['route']) }}"
+               class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium
+                      {{ $isActive 
+                          ? 'border-[#39B9EC] text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900' 
+                          : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-800' }}">
+                {{ $item['text'] }}
+            </a>
+        @endforeach
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
