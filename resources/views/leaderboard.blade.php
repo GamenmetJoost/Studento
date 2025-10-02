@@ -61,30 +61,30 @@
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Unlocked badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
-                            @click='open = true; badge = @json([
-                                "name" => "Streak Master",
-                                "description" => "Beantwoord 30 vragen op rij correct.",
-                                "progress" => $currentStreak,
-                                "total" => 30,
-                                "unlocked" => $highestStreak >= 30,
-                                "currentStreak" => $currentStreak,
-                                "highestStreak" => $highestStreak
-                            ])'>
-                            <img src="{{ asset('images/miscellaneous/streak-master.png') }}" alt="Streak Master Badge" class="w-16 h-16 rounded-full border-2 border-green-500">
+                            @click="open = true; badge = { 
+                                name: 'Streak Master', 
+                                description: 'Beantwoord 30 vragen op rij correct.', 
+                                progress: {{ $currentStreak }}, 
+                                total: 30, 
+                                unlocked: {{ $highestStreak >= 30 ? 'true' : 'false' }},
+                                currentStreak: {{ $currentStreak }},
+                                highestStreak: {{ $highestStreak }}
+                            }">
+                            <img src="https://via.placeholder.com/64/00FF00" alt="Badge" class="w-16 h-16 rounded-full border-2 border-green-500">
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Streak Master</span>
                         </div>
 
                         <!-- Unlocked badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
-                             @click='open = true; badge = @json(["name" => "Quiz King", "description" => "Maak 10 quizzes af.", "progress" => 10, "total" => 10, "unlocked" => true])'>
-                            <img src="{{ asset('images/miscellaneous/quiz-king.png') }}" alt="Quiz King Badge" class="w-16 h-16 rounded-full border-2 border-yellow-400">
+                             @click="open = true; badge = { name: 'Quiz King', description: 'Maak 10 quizzes af.', progress: 10, total: 10, unlocked: true }">
+                            <img src="https://via.placeholder.com/64/FFD700" alt="Badge" class="w-16 h-16 rounded-full border-2 border-yellow-400">
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz King</span>
                         </div>
 
                         <!-- Locked badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
-                             @click='open = true; badge = @json(["name" => "Fast Thinker", "description" => "Beantwoord 20 vragen onder 10 seconden.", "progress" => 5, "total" => 20, "unlocked" => false])'>
-                            <img src="{{ asset('images/miscellaneous/fast-thinker.png') }}" alt="Fast Thinker Badge" class="w-16 h-16 rounded-full border-2 border-gray-400 opacity-60">
+                             @click="open = true; badge = { name: 'Fast Thinker', description: 'Beantwoord 20 vragen onder 10 seconden.', progress: 5, total: 20, unlocked: false }">
+                            <img src="https://via.placeholder.com/64/CCCCCC" alt="Badge" class="w-16 h-16 rounded-full border-2 border-gray-400 opacity-60">
                             <span class="mt-2 text-sm text-gray-500 dark:text-gray-500">Fast Thinker</span>
                         </div>
                     </div>
