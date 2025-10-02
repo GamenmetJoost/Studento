@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Pink "o" ring favicon, matching brand pink -->
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#e72b76" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" fill="none"/>
+  <circle cx="32" cy="32" r="18" fill="none" stroke="#E72B76" stroke-width="10" stroke-linecap="round" filter="url(#shadow)"/>
+</svg>

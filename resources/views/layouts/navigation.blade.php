@@ -16,7 +16,8 @@
                 -->
                 <x-nav-item route="dashboard" text="Dashboard" />
                 <x-nav-item route="stats" text="Statistieken" />
-                <x-nav-item route="leaderboard" text="Leaderboard" />
+                <x-nav-item route="leaderboard" text="Klassement" />
+                <x-nav-item route="categories.index" text="Alle onderwerpen" />
                 {{-- <x-nav-item route="question" text="Toetsen" /> --}}
 
                 @if(Auth::check() && Auth::user()->role === 'admin')
@@ -43,19 +44,19 @@
                     <x-slot name="content">
                         @if(Auth::check())
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            Profiel
                         </x-dropdown-link>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                Uitloggen
                             </x-dropdown-link>
                         </form>
                         @else
                         <x-dropdown-link :href="route('login')">
-                            {{ __('Log in') }}
+                            Inloggen
                         </x-dropdown-link>
                         @endif
                     </x-slot>
@@ -80,11 +81,11 @@
         <x-nav-item-responsive route="dashboard" text="Dashboard" />
         {{-- <x-nav-item-responsive route="question" text="Toetsen" /> --}}
         <x-nav-item-responsive route="stats" text="Statistieken" />
-        <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
+    <x-nav-item-responsive route="leaderboard" text="Klassement" />
+    <x-nav-item-responsive route="categories.index" text="Alle onderwerpen" />
 
         @if(Auth::check() && Auth::user()->role === 'admin')
             <x-nav-item-responsive route="admin.index" text="Admin" />
-            <x-nav-item-responsive route="admin.questions.index" text="Vragenbeheer" />
         @endif
 
         <!-- Responsive Settings Options -->
@@ -97,19 +98,19 @@
             <div class="mt-3 space-y-1">
                 @if(Auth::check())
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    Profiel
                 </x-responsive-nav-link>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        Uitloggen
                     </x-responsive-nav-link>
                 </form>
                 @else
                 <x-responsive-nav-link :href="route('login')">
-                    {{ __('Log in') }}
+                    Inloggen
                 </x-responsive-nav-link>
                 @endif
             </div>

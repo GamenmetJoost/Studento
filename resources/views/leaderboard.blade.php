@@ -1,16 +1,16 @@
 <x-app-layout>
     <x-page-title>
-        Leaderboard & Achievements
+        Klassement & Badges
     </x-page-title>
 
     <div class="py-12" x-data="{ open: false, badge: null }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <!-- Leaderboard -->
+                <!-- Klassement -->
                 <div class="md:col-span-2 bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
                     <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
-                        Leaderboard
+                        Klassement
                     </h3>
 
                     <!-- Current user's score and placement at the top -->
@@ -25,7 +25,7 @@
                         </div>
                     @else
                         <div class="mb-6 bg-gray-100 dark:bg-gray-900 rounded-lg p-4 text-gray-900 dark:text-gray-100">
-                            Je staat nog niet op het leaderboard.
+                            Je staat nog niet op het klassement.
                         </div>
                     @endif
 
@@ -52,10 +52,10 @@
                     </div>
                 </div>
 
-                <!-- Achievements / Badges -->
+                <!-- Badges -->
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
                     <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
-                        Badges & Achievements
+                        Badges
                     </h3>
 
                     <div class="grid grid-cols-3 gap-4">
@@ -77,17 +77,17 @@
 
 
                         <!-- Unlocked badge -->
-                        <div class="flex flex-col items-center cursor-pointer group"
-                             @click="open = true; badge = { name: 'Quiz King', description: 'Maak 10 quizzes af.', progress: 10, total: 10, unlocked: true }">
+                    <div class="flex flex-col items-center cursor-pointer group"
+                        @click="open = true; badge = { name: 'Quiz Koning', description: 'Maak 10 toetsen af.', progress: 10, total: 10, unlocked: true }">
                             <img src="https://via.placeholder.com/64/FFD700" alt="Badge" class="w-16 h-16 rounded-full border-2 border-yellow-400">
-                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz King</span>
+                            <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz Koning</span>
                         </div>
 
                         <!-- Locked badge -->
-                        <div class="flex flex-col items-center cursor-pointer group"
-                             @click="open = true; badge = { name: 'Fast Thinker', description: 'Beantwoord 20 vragen onder 10 seconden.', progress: 5, total: 20, unlocked: false }">
+                    <div class="flex flex-col items-center cursor-pointer group"
+                        @click="open = true; badge = { name: 'Snelle denker', description: 'Beantwoord 20 vragen in minder dan 10 seconden.', progress: 5, total: 20, unlocked: false }">
                             <img src="https://via.placeholder.com/64/CCCCCC" alt="Badge" class="w-16 h-16 rounded-full border-2 border-gray-400 opacity-60">
-                            <span class="mt-2 text-sm text-gray-500 dark:text-gray-500">Fast Thinker</span>
+                            <span class="mt-2 text-sm text-gray-500 dark:text-gray-500">Snelle denker</span>
                         </div>
                     </div>
                 </div>
