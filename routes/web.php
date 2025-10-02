@@ -15,7 +15,7 @@ use App\Http\Controllers\DashboardController;
 // Admin routes
 // ------------------------
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminUserController::class, 'index'])->name('index');
+    Route::get('/', [AdminUserController::class, 'dashboard'])->name('index');
     Route::get('dashboard', [AdminUserController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
     Route::resource('questions', AdminQuestionController::class)->except(['show']);
@@ -44,6 +44,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/stats', [DashboardController::class, 'index'])->name('stats');
     Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
+    Route::get('/onderwerpen', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/onderwerpen/{category}/follow', [\App\Http\Controllers\CategoryController::class, 'follow'])->name('categories.follow');
+    Route::delete('/onderwerpen/{category}/follow', [\App\Http\Controllers\CategoryController::class, 'unfollow'])->name('categories.unfollow');
     Route::get('/quiz-attempt/{attempt}', [QuestionController::class, 'showQuizAttemptResult'])
         ->name('quiz_attempt.result')
         ->where('attempt', '[0-9]+');

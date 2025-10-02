@@ -83,6 +83,15 @@ class LeaderboardController extends Controller
             }
         }
 
+        $has50Badge = $currentUserScore >= 50;
+
+        // Tel hoeveel quizzes de gebruiker heeft gemaakt
+        $quizAttempts = DB::table('quiz_attempts')
+            ->where('user_id', $currentUser->id)
+            ->count();
+
+        $hasQuizMasterBadge = $quizAttempts >= 10;
+
         // Pass to view
         return view('leaderboard', [
             'leaderboard' => $topLeaderboard,
@@ -91,6 +100,11 @@ class LeaderboardController extends Controller
             'currentUserScore' => $currentUserScore,
             'currentStreak' => $currentStreak,
             'highestStreak' => $highestStreak,
+            'has50Badge' => $has50Badge,
+            'correctAnswers' => $currentUserScore ?? 0,
+            'has50Badge' => ($currentUserScore ?? 0) >= 50,
+            'quizAttempts' => $quizAttempts,
+            'hasQuizMasterBadge' => $hasQuizMasterBadge,
         ]);
     }
 }

@@ -52,7 +52,7 @@ npm run dev
 3. Log in met een van de dummy-accounts:
    - **Admin** → `test@admin.com`  
    - **Student** → `student@admin.com`  
-
+4. Gebruik het wachtwoord `Test1234`
 ---
 
 ## ✨ Features

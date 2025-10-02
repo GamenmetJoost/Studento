@@ -31,9 +31,9 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <!-- Import QTI Form -->
+            <!-- Import QTI Formulier -->
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Import QTI Questions</h2>
+                <h2 class="text-xl font-semibold mb-4">Importeer QTI-vragen</h2>
                 
                 @if(session('success'))
                     <div class="mb-4 p-4 border rounded" style="background:#D1FADF; color:#027A48; border-color:#A6F4C5;">
@@ -51,7 +51,7 @@
                     @csrf
                     <div class="mb-4">
                         <label for="qti_file" class="block text-sm font-medium text-gray-700 mb-2">
-                            Upload QTI File (.xml of .zip)
+                            Upload QTI-bestand (.xml of .zip)
                         </label>
                         <input type="file" 
                                name="qti_file" 
@@ -66,10 +66,8 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                    <button type="submit" 
-                            class="px-4 py-2 rounded font-semibold transition"
-                            style="background:#39B9EC; color:#000;">
-                        Import Questions
+                    <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
+                        Importeren
                     </button>
                 </form>
             </div>

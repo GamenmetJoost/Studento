@@ -12,31 +12,18 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                @php
-                    $navItems = [
-                        ['route' => 'dashboard', 'text' => 'Home'],
-                        ['route' => 'stats', 'text' => 'Statistieken'],
-                        ['route' => 'leaderboard', 'text' => 'Leaderboard'],
-                    ];
-                    if(Auth::check() && Auth::user()->role === 'admin') {
-                        $navItems[] = ['route' => 'admin.index', 'text' => 'Admin'];
-                        $navItems[] = ['route' => 'admin.questions.index', 'text' => 'Vragenbeheer'];
-                    }
-                @endphp
+                <!-- MARK: Navigation Links 
+                -->
+                <x-nav-item route="dashboard" text="Dashboard" />
+                <x-nav-item route="stats" text="Statistieken" />
+                <x-nav-item route="leaderboard" text="Klassement" />
+                <x-nav-item route="categories.index" text="Alle onderwerpen" />
+                {{-- <x-nav-item route="question" text="Toetsen" /> --}}
 
-                @foreach($navItems as $item)
-                    @php
-                        $isActive = request()->routeIs($item['route']);
-                    @endphp
-                    <a href="{{ route($item['route']) }}"
-                       class="inline-flex items-center px-3 pt-1 pb-3 text-sm font-medium leading-5
-                              {{ $isActive 
-                                  ? 'border-b-2 border-[#39B9EC] text-gray-900 dark:text-white' 
-                                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200' }}">
-                        {{ $item['text'] }}
-                    </a>
-                @endforeach
+                @if(Auth::check() && Auth::user()->role === 'admin')
+                    <x-nav-item route="admin.index" text="Admin" />
+                    <x-nav-item route="admin.questions.index" text="Vragenbeheer" />
+                @endif  
             </div>
 
             <!-- Settings Dropdown -->
@@ -57,19 +44,19 @@
                     <x-slot name="content">
                         @if(Auth::check())
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            Profiel
                         </x-dropdown-link>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                Uitloggen
                             </x-dropdown-link>
                         </form>
                         @else
                         <x-dropdown-link :href="route('login')">
-                            {{ __('Log in') }}
+                            Inloggen
                         </x-dropdown-link>
                         @endif
                     </x-slot>
@@ -90,18 +77,15 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        @foreach($navItems as $item)
-            @php
-                $isActive = request()->routeIs($item['route']);
-            @endphp
-            <a href="{{ route($item['route']) }}"
-               class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium
-                      {{ $isActive 
-                          ? 'border-[#39B9EC] text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-900' 
-                          : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-800' }}">
-                {{ $item['text'] }}
-            </a>
-        @endforeach
+        <x-nav-item-responsive route="dashboard" text="Dashboard" />
+        {{-- <x-nav-item-responsive route="question" text="Toetsen" /> --}}
+        <x-nav-item-responsive route="stats" text="Statistieken" />
+    <x-nav-item-responsive route="leaderboard" text="Klassement" />
+    <x-nav-item-responsive route="categories.index" text="Alle onderwerpen" />
+
+        @if(Auth::check() && Auth::user()->role === 'admin')
+            <x-nav-item-responsive route="admin.index" text="Admin" />
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
@@ -113,19 +97,19 @@
             <div class="mt-3 space-y-1">
                 @if(Auth::check())
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    Profiel
                 </x-responsive-nav-link>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        Uitloggen
                     </x-responsive-nav-link>
                 </form>
                 @else
                 <x-responsive-nav-link :href="route('login')">
-                    {{ __('Log in') }}
+                    Inloggen
                 </x-responsive-nav-link>
                 @endif
             </div>
