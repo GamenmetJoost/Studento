@@ -1,16 +1,16 @@
 <x-app-layout>
     <x-page-title>
-        Klassement & Badges
+        leaderboard & Badges
     </x-page-title>
 
     <div class="py-12" x-data="{ open: false, badge: null }">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <!-- Klassement -->
+                <!-- Leaderboard -->
                 <div class="md:col-span-2 bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
                     <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
-                        Klassement
+                        Leaderboard
                     </h3>
 
                     <!-- Current user's score and placement at the top -->
@@ -25,7 +25,7 @@
                         </div>
                     @else
                         <div class="mb-6 bg-gray-100 dark:bg-gray-900 rounded-lg p-4 text-gray-900 dark:text-gray-100">
-                            Je staat nog niet op het klassement.
+                            Je staat nog niet op het leaderboard.
                         </div>
                     @endif
 
