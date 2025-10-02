@@ -22,9 +22,9 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <!-- Import QTI Form -->
+            <!-- Import QTI Formulier -->
             <div class="bg-white p-6 rounded-lg shadow">
-                <h2 class="text-xl font-semibold mb-4">Import QTI Questions</h2>
+                <h2 class="text-xl font-semibold mb-4">Importeer QTI-vragen</h2>
                 
                 @if(session('success'))
                     <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
@@ -42,7 +42,7 @@
                     @csrf
                     <div class="mb-4">
                         <label for="qti_file" class="block text-sm font-medium text-gray-700 mb-2">
-                            Upload QTI File (.xml of .zip)
+                            Upload QTI-bestand (.xml of .zip)
                         </label>
                         <input type="file" 
                                name="qti_file" 
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
-                        Import Questions
+                        Importeren
                     </button>
                 </form>
             </div>
