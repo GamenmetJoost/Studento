@@ -16,8 +16,17 @@
             @endphp
 
             @if($categoriesWithQuiz->isEmpty())
-                <div class="bg-gray-100 text-gray-700 p-6 rounded-lg shadow-md font-semibold text-center">
+                <div class="p-6 rounded-lg shadow-md font-semibold text-center"
+                     style="background-color: #E6F7FC; color: #0B3C49;">
                     Je hebt nog geen toetsen gemaakt.
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{{ route('leaderboard') }}" 
+                       class="inline-block font-bold py-2 px-4 rounded transition"
+                       style="background-color: #39B9EC; color: white;">
+                        Bekijk het leaderboard
+                    </a>
                 </div>
             @else
                 @foreach($categoriesWithQuiz as $index => $category)
@@ -26,19 +35,22 @@
                         $textColor = in_array($color, ['#CCD626', '#F2B300']) ? 'black' : 'white';
                     @endphp
 
-                    <div class="text-white p-6 rounded-lg shadow-md font-semibold text-center mb-4"
+                    <div class="p-6 rounded-lg shadow-md font-semibold text-center mb-4"
                          style="background-color: {{ $color }}; color: {{ $textColor }};">
                         <div class="text-xl mb-2">{{ $category->category }}</div>
                         @if($category->user_quiz_attempts->isEmpty())
-                            <div class="bg-gray-100 text-gray-700 p-2 rounded">Geen toetsen gemaakt voor dit onderwerp.</div>
+                            <div class="bg-gray-100 text-gray-700 p-2 rounded">
+                                Geen toetsen gemaakt voor dit onderwerp.
+                            </div>
                         @else
                             <table class="min-w-full bg-white border border-gray-200 text-gray-800 mt-4">
-                                <thead>
+                                <thead style="background-color: #f4f4f4;">
                                     <tr>
                                         <th class="py-2 px-4 border-b">Datum</th>
                                         <th class="py-2 px-4 border-b">Score (%)</th>
                                         <th class="py-2 px-4 border-b">Goede antwoorden</th>
                                         <th class="py-2 px-4 border-b">Totaal vragen</th>
+                                        <th class="py-2 px-4 border-b text-left">Inzien</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +68,10 @@
                                             <td class="py-2 px-4 border-b">{{ $attempt->correct_answers }}</td>
                                             <td class="py-2 px-4 border-b">{{ $attempt->total_questions }}</td>
                                             <td class="py-2 px-4 border-b">
-                                                <a href="{{ route('quiz_attempt.result', ['attempt' => $attempt->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">Inzien</a>
+                                                <a href="{{ route('quiz_attempt.result', ['attempt' => $attempt->id]) }}"
+                                                   class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded">
+                                                    Inzien
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
