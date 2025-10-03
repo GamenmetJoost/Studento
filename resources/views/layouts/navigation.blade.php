@@ -16,7 +16,7 @@
                 -->
                 <x-nav-item route="dashboard" text="Dashboard" />
                 <x-nav-item route="stats" text="Statistieken" />
-                <x-nav-item route="leaderboard" text="Klassement" />
+                <x-nav-item route="leaderboard" text="Leaderboard" />
                 <x-nav-item route="categories.index" text="Alle onderwerpen" />
                 {{-- <x-nav-item route="question" text="Toetsen" /> --}}
 
@@ -80,7 +80,7 @@
         <x-nav-item-responsive route="dashboard" text="Dashboard" />
         {{-- <x-nav-item-responsive route="question" text="Toetsen" /> --}}
         <x-nav-item-responsive route="stats" text="Statistieken" />
-    <x-nav-item-responsive route="leaderboard" text="Klassement" />
+    <x-nav-item-responsive route="leaderboard" text="Leaderboard" />
     <x-nav-item-responsive route="categories.index" text="Alle onderwerpen" />
 
         @if(Auth::check() && Auth::user()->role === 'admin')

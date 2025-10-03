@@ -50,6 +50,7 @@
                                         <th class="py-2 px-4 border-b">Score (%)</th>
                                         <th class="py-2 px-4 border-b">Goede antwoorden</th>
                                         <th class="py-2 px-4 border-b">Totaal vragen</th>
+                                        <th class="py-2 px-4 border-b text-left">Inzien</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,9 +68,8 @@
                                             <td class="py-2 px-4 border-b">{{ $attempt->correct_answers }}</td>
                                             <td class="py-2 px-4 border-b">{{ $attempt->total_questions }}</td>
                                             <td class="py-2 px-4 border-b">
-                                                <a href="{{ route('quiz_attempt.result', ['attempt' => $attempt->id]) }}" 
-                                                   class="font-bold py-1 px-3 rounded"
-                                                   style="background-color: #E72B76; color: white;">
+                                                <a href="{{ route('quiz_attempt.result', ['attempt' => $attempt->id]) }}"
+                                                   class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-3 rounded">
                                                     Inzien
                                                 </a>
                                             </td>

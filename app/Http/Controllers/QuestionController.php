@@ -274,28 +274,49 @@ class QuestionController extends Controller
     public function showQuizAttemptResult(Request $request, $attemptId)
     {
         $attempt = \App\Models\QuizAttempt::with('category')->findOrFail($attemptId);
-        // Stel review-data samen uit QuizAttemptAnswer records
-        $answers = $attempt->answers()->with('question')->get();
+        // Alleen eigen attempts mogen worden ingezien
+        abort_if(auth()->id() !== $attempt->user_id, 403);
+
+        // Bouw review-data op exact zoals bij einde-toets, maar nu uit DB
+        $category = $attempt->category;
+        $questions = $category->questions()->with('choices')->get();
+        $answers = $attempt->answers()->get()->keyBy('question_id');
+
         $review = [];
-        foreach ($answers as $answer) {
-            $question = $answer->question;
-            $choices = $question->choices->map(function($choice) use ($answer) {
-                return [
-                    'identifier' => $choice->identifier,
-                    'text' => $choice->text,
-                    'is_correct' => $choice->is_correct,
-                    'is_selected' => $answer->selected_choice_id == $choice->id,
-                ];
-            })->toArray();
+        foreach ($questions as $q) {
+            $answer = $answers->get($q->id);
+            $hasChoices = $q->choices->count() > 0;
+            $userAnswer = null;
+            if ($hasChoices) {
+                $userAnswer = $answer?->choice_id; // id van gekozen choice
+            } else {
+                $userAnswer = $answer?->answer_value; // 'true'/'false' voor boolean
+            }
+
+            $correctChoice = $q->choices->firstWhere('is_correct', true);
             $review[] = [
-                'question_text' => $question->question_text,
-                'choices' => $choices,
-                'user_answer_is_correct' => $answer->is_correct,
-                'correct_choice_text' => $question->choices->where('is_correct', true)->first()?->text,
-                'fallback_boolean' => $question->type === 'boolean',
-                'fallback_selected' => $answer->selected_choice_id ? ($question->choices->find($answer->selected_choice_id)?->identifier) : null,
+                'question_id' => $q->id,
+                'question_text' => $q->question_text,
+                'user_answer_id' => $userAnswer,
+                'user_answer_is_correct' => $hasChoices
+                    ? optional($q->choices->firstWhere('id', $userAnswer))->is_correct
+                    : ($userAnswer === 'true'),
+                'correct_choice_id' => $correctChoice->id ?? null,
+                'correct_choice_text' => $correctChoice->choice_text ?? ($hasChoices ? null : 'Waar'),
+                'choices' => $q->choices->map(function ($c) use ($userAnswer) {
+                    return [
+                        'id' => $c->id,
+                        'identifier' => $c->identifier,
+                        'text' => $c->choice_text,
+                        'is_correct' => (bool)$c->is_correct,
+                        'is_selected' => (string)$c->id === (string)$userAnswer,
+                    ];
+                })->values()->toArray(),
+                'fallback_boolean' => !$hasChoices,
+                'fallback_selected' => !$hasChoices ? $userAnswer : null,
             ];
         }
+
         return view('quiz_result', [
             'category' => $attempt->category,
             'score' => $attempt->correct_answers,
