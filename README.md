@@ -94,5 +94,5 @@ Gemaakt door:
 Wie deed wat?  
 - Marvin heeft de opmaak gemaakt.  
 - Wouter heeft het leaderboard en badges gemaakt.
-- Joost  heeft het admin dashboard gemaakt.
-- Floris  heeft de statistieken en dashboard functies gemaakt.
+- Joost heeft het admin dashboard en gemaakt.
+- Floris heeft de statistieken, alle onderwerpen pagina en dashboard functies gemaakt.
