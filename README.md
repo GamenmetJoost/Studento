@@ -89,7 +89,8 @@ Gemaakt door:
 - Joost  
 - Floris  
 
-## 🧑‍💻 Auteurs
+---
+
 Wie deed wat?  
 - Marvin heeft de opmaak gemaakt.  
 - Wouter heeft het leaderboard en badges gemaakt.
