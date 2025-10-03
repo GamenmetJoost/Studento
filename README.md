@@ -88,3 +88,10 @@ Gemaakt door:
 - Wouter  
 - Joost  
 - Floris  
+
+## 🧑‍💻 Auteurs
+Wie deed wat?  
+- Marvin heeft de opmaak gemaakt.  
+- Wouter heeft het leaderboard en badges gemaakt.
+- Joost  heeft het admin dashboard gemaakt.
+- Floris  heeft de statistieken en dashboard functies gemaakt.
