@@ -31,6 +31,14 @@ Route::post('/import', [ImportController::class, 'import'])
     ->name('import');
 
 // ------------------------
+// Homepage voor gasten
+// ------------------------
+Route::get('/', function () {
+    return view('guest-welcome'); // nieuwe Blade view
+})->name('welcome');
+
+
+// ------------------------
 // Homepage
 // ------------------------
 Route::get('/', function () {
