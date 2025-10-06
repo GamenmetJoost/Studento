@@ -23,8 +23,8 @@
 
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen w-full flex flex-col bg-gray-100 dark:bg-gray-900">
-            <!-- Direct de slot inhoud zonder kleine container -->
-            {{ $slot }}
+            <!-- Section content van welcome.blade.php -->
+            @yield('content')
         </div>
     </body>
 </html>
