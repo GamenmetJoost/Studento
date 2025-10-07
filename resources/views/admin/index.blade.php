@@ -61,7 +61,7 @@
                                file:mr-4 file:py-2 file:px-4 
                                file:rounded-full file:border-0 
                                file:text-sm file:font-semibold 
-                               file:bg-[#39B9EC]/20 file:text-[#39B9EC] hover:file:bg-[#39B9EC]/30">
+                               file:bg-primary_blue/20 file:text-primary_blue hover:file:bg-primary_blue/30">
                         @error('qti_file')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror

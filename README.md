@@ -17,8 +17,8 @@ Volg deze stappen om het project lokaal te draaien:
 
 ```bash
 # Clone de repository
-git clone https://github.com/jouwgebruikersnaam/studento-projecto.git
-cd studento-projecto
+git clone https://github.com/GamenmetJoost/Studento.git
+cd Studento
 
 # Installeer dependencies
 composer install
@@ -51,7 +51,7 @@ npm run dev
 2. Open de app in je browser: [http://localhost:8000](http://localhost:8000)  
 3. Log in met een van de dummy-accounts:
    - **Admin** → `test@admin.com`  
-   - **Student** → `student@admin.com`  
+   - **Student** → `test@student.com`  
 4. Gebruik het wachtwoord `Test1234`
 ---
 

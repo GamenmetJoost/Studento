@@ -18,7 +18,7 @@
                             <div class="mt-4 flex flex-col gap-2">
                                 <!-- Start toets knop (blauw corporate) -->
                                 <a href="{{ route('toetsen.category', ['category_id' => $category->id]) }}" 
-                                   class="px-3 py-2 rounded bg-[#39B9EC] hover:opacity-90 text-white text-sm w-full text-center">
+                                   class="px-3 py-2 rounded bg-primary_blue hover:opacity-90 text-white text-sm w-full text-center">
                                     Start toets
                                 </a>
 
@@ -32,7 +32,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" 
-                                            class="px-3 py-2 rounded bg-[#E72B76] hover:opacity-90 text-white text-sm w-full">
+                                            class="px-3 py-2 rounded bg-primary_pink hover:opacity-90 text-white text-sm w-full">
                                             Verwijder interesse
                                         </button>
                                     </form>
@@ -41,14 +41,14 @@
                                     <form method="POST" action="{{ route('categories.follow', $category) }}">
                                         @csrf
                                         <button type="submit" 
-                                            class="px-3 py-2 rounded bg-[#CCD626] hover:opacity-90 text-black text-sm w-full">
+                                            class="px-3 py-2 rounded bg-primary_yellow hover:opacity-90 text-black text-sm w-full">
                                             Voeg toe aan interesses
                                         </button>
                                     </form>
                                 @endif
 
                                 <!-- Extra knop voorbeeld (geel training & advies) -->
-                                {{-- <button class="px-3 py-2 rounded bg-[#F2B300] hover:opacity-90 text-black text-sm w-full">
+                                {{-- <button class="px-3 py-2 rounded bg-secondary_yellow hover:opacity-90 text-black text-sm w-full">
                                     Extra optie
                                 </button> --}}
                             </div>

@@ -12,11 +12,11 @@
                 <!-- Dagelijkse vragen + huidige vragenlijst -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <a href="{{ url('/stats') }}" 
-                       class="bg-[#39B9EC] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
+                       class="bg-primary_blue text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
                         Dagelijkse Vragen
                     </a>
                     <a href="{{ url('/leaderboard') }}" 
-                       class="bg-[#E72B76] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
+                       class="bg-primary_pink text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
                         Leaderboard
                     </a>
                 </div>
@@ -100,7 +100,7 @@
                     <div class="flex justify-end">
                         <button 
                             type="submit"
-                            class="px-5 py-2 bg-[#39B9EC] text-white rounded-lg hover:bg-[#E72B76] transition"
+                            class="px-5 py-2 bg-primary_blue text-white rounded-lg hover:bg-primary_pink transition"
                         >
                             Opslaan & Sluiten
                         </button>
