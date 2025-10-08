@@ -12,9 +12,9 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 
 // ------------------------
-// Admin routes
+// Admin routes (protected)
 // ------------------------
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth','can:admin'])->group(function () {
     Route::get('/', [AdminUserController::class, 'dashboard'])->name('index');
     Route::get('dashboard', [AdminUserController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
@@ -27,7 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Import routes
 // ------------------------
 Route::post('/import', [ImportController::class, 'import'])
-    ->middleware(['auth', 'admin'])
+    ->middleware(['auth', 'can:admin'])
     ->name('import');
 
 // ------------------------
