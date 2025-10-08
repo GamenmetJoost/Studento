@@ -39,6 +39,22 @@
                     <div class="mb-4 p-4 border rounded" style="background:#D1FADF; color:#027A48; border-color:#A6F4C5;">
                         {{ session('success') }}
                     </div>
+                    @php($sum = session('import_summary'))
+                    @if($sum && (($sum['failed'] ?? 0) > 0))
+                        <div class="mb-4 p-3 rounded border border-yellow-300 bg-yellow-50 text-yellow-800 text-sm">
+                            {{ $sum['failed'] }} bestand(en) zijn overgeslagen. 
+                            @if(!empty($sum['errors']))
+                                <details class="mt-2">
+                                    <summary class="cursor-pointer">Details</summary>
+                                    <ul class="list-disc list-inside mt-2">
+                                        @foreach($sum['errors'] as $err)
+                                            <li><strong>{{ $err['file'] ?? 'onbekend bestand' }}</strong>: {{ $err['message'] }}</li>
+                                        @endforeach
+                                    </ul>
+                                </details>
+                            @endif
+                        </div>
+                    @endif
                 @endif
                 
                 @if(session('error'))
@@ -65,6 +81,10 @@
                         @error('qti_file')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
+                    </div>
+                    <div class="mb-4 flex items-center gap-2">
+                        <input type="checkbox" id="continue_on_error" name="continue_on_error" value="1" class="rounded border-gray-300">
+                        <label for="continue_on_error" class="text-sm text-gray-700">Ga door bij fouten (ZIP): sla mislukte bestanden over en rapporteer aantallen</label>
                     </div>
                     <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded hover:bg-blue-600">
                         Importeren

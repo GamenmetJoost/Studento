@@ -21,10 +21,16 @@ class ImportController extends Controller
             $importer = new QtiImporter();
 
             if ($extension === 'zip') {
-                $importer->importFromZip($filePath);
+                $continue = (bool) $request->boolean('continue_on_error');
+                $summary = $importer->importFromZip($filePath, $continue);
+                $msg = "ZIP import completed. Imported: {$summary['imported']}/{$summary['processed']}.";
+                if (($summary['failed'] ?? 0) > 0) {
+                    $msg .= " Skipped: {$summary['failed']}.";
+                }
+                return back()->with('success', $msg)->with('import_summary', $summary);
             } else {
                 // XML of QTI
-                $importer->import($filePath);
+                $importer->import($filePath, false); // never update existing
             }
 
             $questionCount = \App\Models\Question::count();
