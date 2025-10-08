@@ -9,17 +9,27 @@
             Leren hoort niet vermoeiend te zijn, leer via ons op een leuke manier ookal is het kort!<br>
             Log in of registreer om te beginnen.
         </p>
-        <div class="flex flex-col sm:flex-row gap-8 w-full max-w-xl justify-center">
-            <a href="{{ route('login') }}" 
-               class="flex-1 px-10 py-5 rounded-xl bg-primary_blue text-white font-semibold text-xl text-center shadow-lg hover:bg-secondary_blue transition">
-                Inloggen
-            </a>
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" 
-                   class="flex-1 px-10 py-5 rounded-xl bg-primary_pink text-white font-semibold text-xl text-center shadow-lg hover:bg-secondary_pink transition">
-                    Registreren
+        @guest
+            <div class="flex flex-col sm:flex-row gap-8 w-full max-w-xl justify-center">
+                <a href="{{ route('login') }}" 
+                class="flex-1 px-10 py-5 rounded-xl bg-primary_blue text-white font-semibold text-xl text-center shadow-lg hover:bg-secondary_blue transition">
+                    Inloggen
                 </a>
-            @endif
-        </div>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" 
+                    class="flex-1 px-10 py-5 rounded-xl bg-primary_pink text-white font-semibold text-xl text-center shadow-lg hover:bg-secondary_pink transition">
+                        Registreren
+                    </a>
+                @endif
+            </div>
+        @endguest
+        @auth
+            <div class="flex justify-center w-full max-w-xl mt-8">
+                <a href="{{ route('dashboard') }}"
+                   class="flex-1 px-10 py-5 rounded-xl bg-primary_blue text-white font-semibold text-xl text-center shadow-lg hover:bg-secondary_blue transition">
+                    Ga naar je dashboard
+                </a>
+            </div>
+        @endauth
     </div>
 @endsection
