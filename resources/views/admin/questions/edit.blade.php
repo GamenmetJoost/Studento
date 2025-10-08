@@ -7,6 +7,16 @@
         @if(session('status'))
             <div class="mb-4 p-3 rounded bg-emerald-100 text-emerald-800 text-sm">{{ session('status') }}</div>
         @endif
+        @if ($errors->any())
+            <div class="mb-4 p-3 rounded bg-red-100 text-red-800 text-sm">
+                <p class="font-semibold mb-1">Er ging iets mis bij het opslaan:</p>
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form method="POST" action="{{ route('admin.questions.update', $question) }}" class="space-y-6">
             @csrf
             @method('PUT')
@@ -18,15 +28,18 @@
                             <option value="{{ $c->id }}" @selected(old('category_id',$question->category_id)==$c->id)>{{ $c->sector }} - {{ $c->category }}</option>
                         @endforeach
                     </select>
+                    @error('category_id')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Identifier (optioneel)</label>
                     <input type="text" name="identifier" value="{{ old('identifier',$question->identifier) }}" class="w-full rounded border-gray-300">
+                    @error('identifier')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
             </div>
             <div>
                 <label class="block text-sm font-medium mb-1">Vraagtekst</label>
                 <textarea name="question_text" rows="6" class="w-full rounded border-gray-300" required>{{ old('question_text',$question->question_text) }}</textarea>
+                @error('question_text')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div class="flex gap-3">
                 <button class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Bijwerken</button>

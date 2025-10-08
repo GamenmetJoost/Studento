@@ -22,7 +22,6 @@
 
                 @if(Auth::check() && Auth::user()->role === 'admin')
                     <x-nav-item route="admin.index" text="Admin" />
-                    <x-nav-item route="admin.questions.index" text="Vragenbeheer" />
                 @endif  
             </div>
 
