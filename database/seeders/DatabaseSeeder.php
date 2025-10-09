@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
         // Import questions from XML and ZIP files
         $this->call(KennisquizSeeder::class);
 
+        // Create realistic quiz attempts + answers so admin stats and details work out of the box
+        $this->call(QuizAttemptsSeeder::class);
+
         // Leaderboard dummy data
         for ($i = 0; $i < 55; $i++) {
             DB::table('quiz_results')->insert([
