@@ -60,6 +60,7 @@
 
                     <div class="grid grid-cols-3 gap-4">
                         
+
                         <!-- 50 Correcte Vragen Badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
                             @click="open = true; badge = { 
@@ -69,11 +70,12 @@
                                 total: 50, 
                                 unlocked: {{ $has50Badge ? 'true' : 'false' }} 
                             }">
-                            <img src="https://via.placeholder.com/64/{{ $has50Badge ? '00FF00' : 'CCCCCC' }}" 
-                                alt="Badge" 
+                            <img src="{{ asset('images/badges/fastthinkerbadge.png') }}"
+                                alt="Answer Hero Badge"
                                 class="w-16 h-16 rounded-full border-2 {{ $has50Badge ? 'border-green-500' : 'border-gray-400 opacity-60' }}">
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Answer Hero</span>
                         </div>
+
 
                         <!-- Quiz Master Badge -->
                         <div class="flex flex-col items-center cursor-pointer group"
@@ -84,8 +86,8 @@
                                 total: 10, 
                                 unlocked: {{ $hasQuizMasterBadge ? 'true' : 'false' }} 
                             }">
-                            <img src="https://via.placeholder.com/64/{{ $hasQuizMasterBadge ? 'FFD700' : 'CCCCCC' }}" 
-                                alt="Badge" 
+                            <img src="{{ asset('images/badges/quizkingbadge.png') }}"
+                                alt="Quiz Master Badge"
                                 class="w-16 h-16 rounded-full border-2 {{ $hasQuizMasterBadge ? 'border-yellow-400' : 'border-gray-400 opacity-60' }}">
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz Master</span>
                         </div>
