@@ -15,7 +15,7 @@ class ChoiceFactory extends Factory
     {
         return [
             'question_id' => Question::factory(),
-            'identifier' => strtoupper($this->faker->unique()->bothify('A#')),
+            'identifier' => strtoupper('A'. $this->faker->bothify('#?')),
             'choice_text' => $this->faker->sentence(6),
             'is_correct' => false,
             'mapped_value' => 0.0,
