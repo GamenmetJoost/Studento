@@ -62,7 +62,8 @@
                             <input type="radio" name="answer" value="{{ $choice->id }}" class="hidden peer" @checked($selected == $choice->id) onchange="this.form.submit()">
                             <div class="w-full py-3 px-4 rounded-lg border transition shadow-sm
                                 peer-checked:border-blue-600 peer-checked:ring-2 peer-checked:ring-blue-300
-                                {{ $selected == $choice->id ? 'bg-blue-50 border-blue-600' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300' }}">
+                                {{ $selected == $choice->id ? 'bg-blue-50 border-blue-600' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300' }}
+                                text-gray-900 dark:text-white">
                                 <span class="font-semibold mr-2">{{ $choice->identifier }}</span> {{ $choice->choice_text }}
                             </div>
                         </label>
