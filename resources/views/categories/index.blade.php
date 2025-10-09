@@ -41,14 +41,14 @@
                                     <form method="POST" action="{{ route('categories.follow', $category) }}">
                                         @csrf
                                         <button type="submit" 
-                                            class="px-3 py-2 rounded bg-primary_yellow hover:opacity-90 text-black text-sm w-full">
+                                            class="px-3 py-2 rounded bg-primary_green hover:opacity-90 text-black text-sm w-full">
                                             Voeg toe aan interesses
                                         </button>
                                     </form>
                                 @endif
 
                                 <!-- Extra knop voorbeeld (geel training & advies) -->
-                                {{-- <button class="px-3 py-2 rounded bg-secondary_yellow hover:opacity-90 text-black text-sm w-full">
+                                {{-- <button class="px-3 py-2 rounded bg-primary_orange hover:opacity-90 text-black text-sm w-full">
                                     Extra optie
                                 </button> --}}
                             </div>

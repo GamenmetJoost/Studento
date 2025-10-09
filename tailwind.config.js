@@ -18,8 +18,8 @@ export default {
                 primary_pink: '#E72B76',        // primary pink
                 secondary_blue: '#2ea6d6',      // secondary blue
                 secondary_pink: '#c32363',      // secondary pink
-                primary_yellow: '#CCD626',      // primary yellow
-                secondary_yellow: '#F2B300',    // secondary yellow
+                primary_green: '#CCD626',      // primary yellow
+                primary_orange: '#F2B300',    // secondary yellow
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
