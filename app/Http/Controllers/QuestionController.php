@@ -274,8 +274,10 @@ class QuestionController extends Controller
     public function showQuizAttemptResult(Request $request, $attemptId)
     {
         $attempt = \App\Models\QuizAttempt::with('category')->findOrFail($attemptId);
-        // Alleen eigen attempts mogen worden ingezien
-        abort_if(auth()->id() !== $attempt->user_id, 403);
+        // Alleen eigen attempts mogen worden ingezien, behalve voor admins
+    $user = Auth::user();
+        $isAdmin = $user && ($user->role === 'admin');
+        abort_if(!$isAdmin && $user?->id !== $attempt->user_id, 403);
 
         // Bouw review-data op exact zoals bij einde-toets, maar nu uit DB
         $category = $attempt->category;

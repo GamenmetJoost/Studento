@@ -106,6 +106,11 @@
                        style="background:#E72B76; color:#fff;">
                         Beheer Vragen
                     </a>
+                    <a href="{{ route('admin.stats.index') }}" 
+                       class="block px-4 py-2 rounded text-center font-semibold transition"
+                       style="background:#F2B300; color:#000;">
+                        Student statistieken
+                    </a>
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminQuestionController;
 use App\Http\Controllers\AdminChoiceController;
+use App\Http\Controllers\AdminStatsController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 
@@ -17,6 +18,8 @@ use App\Http\Controllers\DashboardController;
 Route::prefix('admin')->name('admin.')->middleware(['auth','can:admin'])->group(function () {
     Route::get('/', [AdminUserController::class, 'dashboard'])->name('index');
     Route::get('dashboard', [AdminUserController::class, 'dashboard'])->name('dashboard');
+    Route::get('stats', [AdminStatsController::class, 'index'])->name('stats.index');
+    Route::get('students/{user}', [AdminStatsController::class, 'show'])->name('stats.show');
     Route::resource('users', AdminUserController::class);
     Route::resource('questions', AdminQuestionController::class)->except(['show']);
     Route::post('questions/{question}/choices', [AdminChoiceController::class, 'store'])->name('choices.store');
