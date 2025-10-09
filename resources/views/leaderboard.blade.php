@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-page-title>
-        leaderboard & Badges
+        Leaderboard & Badges
     </x-page-title>
 
     <div class="py-12" x-data="{ open: false, badge: null }">
