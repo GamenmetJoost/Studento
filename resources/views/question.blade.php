@@ -3,12 +3,12 @@
 
         <!-- Saved Message -->
         @if(session('saved'))
-            <div class="mb-4 p-2 rounded bg-emerald-200 text-emerald-800 text-sm">Antwoord opgeslagen.</div>
+            <div class="mb-4 p-2 rounded bg-emerald-200 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200 text-sm">Antwoord opgeslagen.</div>
         @endif
 
         <!-- Completion Message -->
         @if(session('completed'))
-            <div class="mb-4 p-4 rounded-lg bg-blue-100 border border-blue-400 text-blue-700">
+            <div class="mb-4 p-4 rounded-lg bg-blue-100 border border-blue-400 text-blue-700 dark:bg-blue-900/40 dark:border-blue-500 dark:text-blue-200">
                 <strong>{{ session('message') }}</strong>
                 <div class="mt-2">
                     <a href="{{ route('dashboard') }}" class="text-blue-600 underline">Terug naar dashboard</a>
@@ -61,8 +61,8 @@
                         <label class="block cursor-pointer">
                             <input type="radio" name="answer" value="{{ $choice->id }}" class="hidden peer" @checked($selected == $choice->id) onchange="this.form.submit()">
                             <div class="w-full py-3 px-4 rounded-lg border transition shadow-sm
-                                peer-checked:border-blue-600 peer-checked:ring-2 peer-checked:ring-blue-300
-                                {{ $selected == $choice->id ? 'bg-blue-200 dark:bg-blue-400 border-primary_blue' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300' }}
+                                peer-checked:border-blue-600 peer-checked:ring-2 peer-checked:ring-blue-300 dark:peer-checked:ring-blue-500
+                                {{ $selected == $choice->id ? 'bg-blue-200 dark:bg-blue-600/30 border-primary_blue dark:border-blue-400' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-400' }}
                                 text-gray-900 dark:text-white">
                                 <span class="font-semibold mr-2">{{ $choice->identifier }}</span> {{ $choice->choice_text }}
                             </div>
@@ -78,11 +78,11 @@
                     @endphp
                     <label>
                         <input type="radio" name="answer" value="true" class="hidden peer" @checked($selected === 'true') onchange="this.form.submit()">
-                        <div class="w-32 py-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 peer-checked:ring-4 ring-green-300">Waar</div>
+                        <div class="w-32 py-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 peer-checked:ring-4 ring-green-300 dark:ring-green-500">Waar</div>
                     </label>
                     <label>
                         <input type="radio" name="answer" value="false" class="hidden peer" @checked($selected === 'false') onchange="this.form.submit()">
-                        <div class="w-32 py-3 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 peer-checked:ring-4 ring-red-300">Niet waar</div>
+                        <div class="w-32 py-3 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 peer-checked:ring-4 ring-red-300 dark:ring-red-500">Niet waar</div>
                     </label>
                 </div>
             @endif
@@ -140,10 +140,10 @@
                 @endforeach
             </div>
             <div class="mt-4 flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
-                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-emerald-200 border border-emerald-400 inline-block"></span> Beantwoord</div>
-                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 inline-block"></span> Onbeantwoord</div>
-                <div class="flex items-center gap-1 relative"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 inline-block relative"><span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-500 border border-white"></span></span> Gemarkeerd</div>
-                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-white border-2 border-blue-500 inline-block"></span> Huidige</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-emerald-200 border border-emerald-400 dark:bg-emerald-600/30 dark:border-emerald-500 inline-block"></span> Beantwoord</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 dark:bg-gray-700 dark:border-gray-600 inline-block"></span> Onbeantwoord</div>
+                <div class="flex items-center gap-1 relative"><span class="w-4 h-4 rounded bg-gray-200 border border-gray-400 dark:bg-gray-700 dark:border-gray-600 inline-block relative"><span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-500 border border-white dark:border-gray-800"></span></span> Gemarkeerd</div>
+                <div class="flex items-center gap-1"><span class="w-4 h-4 rounded bg-white dark:bg-transparent border-2 border-blue-500 dark:border-blue-400 inline-block"></span> Huidige</div>
             </div>
         </div>
 
