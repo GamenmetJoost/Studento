@@ -7,9 +7,9 @@
                 <!-- Logo + Titel -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
-                        <div class="bg-white rounded-2xl px-3 py-1 flex items-center shadow transition-colors duration-300">
+                        <div class="bg-white dark:bg-transparent rounded-2xl px-3 py-1 flex items-center shadow dark:shadow-none transition-colors duration-300">
                             <x-application-logo class="block h-9 w-auto fill-current text-primary_blue" />
-                            <span class="ml-2 text-xl font-bold text-grey-900">Studento</span>
+                            <span class="ml-2 text-xl font-bold text-grey-900 dark:text-white">Studento</span>
                         </div>
                     </a>
                 </div>
