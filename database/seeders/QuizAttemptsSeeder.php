@@ -32,7 +32,8 @@ class QuizAttemptsSeeder extends Seeder
             }
         }
 
-        $categories = Category::query()->inRandomOrder()->limit(5)->get();
+    // Fetch a wider pool of categories that actually have questions
+    $categories = Category::query()->has('questions', '>=', 1)->inRandomOrder()->limit(30)->get();
         if ($categories->isEmpty()) {
             $this->command?->warn('No categories found; skipping QuizAttemptsSeeder.');
             return;
@@ -41,6 +42,11 @@ class QuizAttemptsSeeder extends Seeder
         foreach ($students as $student) {
             // Each student: 2-4 attempts across random categories
             $attemptCount = rand(2, 4);
+            // Ensure Test Student has at least 10 attempts for badge showcasing
+            if (strtolower($student->email) === 'test@student.com') {
+                $current = QuizAttempt::where('user_id', $student->id)->count();
+                $attemptCount = max(10 - $current, 0);
+            }
             for ($i = 0; $i < $attemptCount; $i++) {
                 $category = $categories->random();
 

@@ -106,13 +106,19 @@
                 <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200" x-text="badge?.name"></h3>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400" x-text="badge?.description"></p>
 
-                <template x-if="badge && badge.total > 0">
+                <template x-if="badge && badge.total > 0 && !badge.unlocked">
                     <div class="mt-4">
-                        <p class="text-sm text-gray-600 dark:text-gray-400" x-text="`Progressie: ${badge.progress}/${badge.total}`"></p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400" x-text="`Progressie: ${Math.min(badge.progress, badge.total)}/${badge.total}`"></p>
                         <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700 mt-1">
                             <div class="bg-blue-500 h-3 rounded-full" 
-                                 :style="`width: ${(badge.progress / badge.total) * 100}%`"></div>
+                                 :style="`width: ${Math.min((badge.progress / badge.total) * 100, 100)}%`"></div>
                         </div>
+                    </div>
+                </template>
+
+                <template x-if="badge && badge.unlocked === true">
+                    <div class="mt-4">
+                        <p class="text-sm font-medium text-emerald-700 dark:text-emerald-400">Badge behaald!</p>
                     </div>
                 </template>
 

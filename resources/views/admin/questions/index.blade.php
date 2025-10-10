@@ -1,19 +1,18 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto py-8 px-4">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-semibold">Vragen beheren</h1>
-            <a href="{{ route('admin.questions.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Nieuwe vraag</a>
-        </div>
+        <x-page-title>
+            Vragen beheren
+        </x-page-title>
         @if(session('status'))
             <div class="mb-4 p-3 rounded bg-emerald-100 text-emerald-800 text-sm">{{ session('status') }}</div>
         @endif
         <form method="GET" class="mb-4 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             <div>
-                <label class="block text-sm font-medium mb-1">Zoek</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white">Zoek</label>
                 <input type="text" name="q" value="{{ request('q') }}" class="w-full rounded border-gray-300" placeholder="Tekst...">
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1">Categorie</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white">Categorie</label>
                 <select name="category" class="w-full rounded border-gray-300">
                     <option value="">Alle</option>
                     @foreach($categories as $c)

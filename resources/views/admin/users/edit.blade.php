@@ -10,17 +10,17 @@
             @csrf
             @method('PUT')
             <div>
-                <label class="block text-sm font-medium mb-1" for="name">Naam</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="name">Naam</label>
                 <input type="text" name="name" id="name" value="{{ old('name',$user->name) }}" class="w-full border rounded px-3 py-2" required>
                 @error('name')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="email">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email',$user->email) }}" class="w-full border rounded px-3 py-2" required>
                 @error('email')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1" for="role">Rol</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="role">Rol</label>
                 <select name="role" id="role" class="w-full border rounded px-3 py-2" required>
                     @foreach($roles as $r)
                         <option value="{{ $r }}" @selected(old('role',$user->role)===$r)>{{ ucfirst($r) }}</option>
@@ -29,12 +29,12 @@
                 @error('role')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1" for="timezone">Timezone</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="timezone">Timezone</label>
                 <input type="text" name="timezone" id="timezone" value="{{ old('timezone',$user->timezone) }}" placeholder="Europe/Amsterdam" class="w-full border rounded px-3 py-2">
                 @error('timezone')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1" for="password">Wachtwoord (laat leeg om niet te wijzigen)</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="password">Wachtwoord (laat leeg om niet te wijzigen)</label>
                 <input type="password" name="password" id="password" class="w-full border rounded px-3 py-2">
                 @error('password')<p class="text-sm text-red-600 mt-1">{{ $message }}</p>@enderror
             </div>

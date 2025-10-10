@@ -5,11 +5,11 @@
         <div class="mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <form method="GET" class="flex flex-wrap items-end gap-3">
                 <div>
-                    <label class="block text-sm font-medium mb-1" for="q">Zoek</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="q">Zoek</label>
                     <input type="text" name="q" id="q" value="{{ request('q') }}" class="border rounded px-3 py-2" placeholder="Naam of email">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium mb-1" for="role">Rol</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white" for="role">Rol</label>
                     <select name="role" id="role" class="border rounded px-3 py-2">
                         <option value="">Alle</option>
                         @foreach($roles as $r)

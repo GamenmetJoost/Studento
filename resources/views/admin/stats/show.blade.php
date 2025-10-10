@@ -5,7 +5,7 @@
         <!-- Filters -->
         <form method="GET" class="bg-white p-4 rounded shadow mb-6 grid grid-cols-1 md:grid-cols-5 gap-4">
             <div>
-                <label class="block text-xs text-gray-600 mb-1">Onderwerp</label>
+                <label class="block text-xs mb-1 text-gray-900 dark:text-white">Onderwerp</label>
                 <select class="border rounded px-3 py-2 w-full" name="category_id">
                     <option value="">Alle</option>
                     @foreach($categories as $cat)
@@ -14,11 +14,11 @@
                 </select>
             </div>
             <div>
-                <label class="block text-xs text-gray-600 mb-1">Vanaf</label>
+                <label class="block text-xs mb-1 text-gray-900 dark:text-white">Vanaf</label>
                 <input class="border rounded px-3 py-2 w-full" type="date" name="from" value="{{ $filters['from'] ?? '' }}">
             </div>
             <div>
-                <label class="block text-xs text-gray-600 mb-1">Tot</label>
+                <label class="block text-xs mb-1 text-gray-900 dark:text-white">Tot</label>
                 <input class="border rounded px-3 py-2 w-full" type="date" name="to" value="{{ $filters['to'] ?? '' }}">
             </div>
             <div class="flex items-end">

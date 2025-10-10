@@ -22,7 +22,7 @@
             @method('PUT')
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-medium mb-1">Categorie</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white">Categorie</label>
                     <select name="category_id" class="w-full rounded border-gray-300" required>
                         @foreach($categories as $c)
                             <option value="{{ $c->id }}" @selected(old('category_id',$question->category_id)==$c->id)>{{ $c->sector }} - {{ $c->category }}</option>
@@ -31,13 +31,13 @@
                     @error('category_id')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="block text-sm font-medium mb-1">Identifier (optioneel)</label>
+                    <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white">Identifier (optioneel)</label>
                     <input type="text" name="identifier" value="{{ old('identifier',$question->identifier) }}" class="w-full rounded border-gray-300">
                     @error('identifier')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1">Vraagtekst</label>
+                <label class="block text-sm font-medium mb-1 text-gray-900 dark:text-white">Vraagtekst</label>
                 <textarea name="question_text" rows="6" class="w-full rounded border-gray-300" required>{{ old('question_text',$question->question_text) }}</textarea>
                 @error('question_text')<p class="text-red-600 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
@@ -73,11 +73,11 @@
                 @csrf
                 <div class="grid md:grid-cols-4 gap-4">
                     <div>
-                        <label class="block text-xs font-medium mb-1">Identifier</label>
+                        <label class="block text-xs font-medium mb-1 text-gray-900 dark:text-white">Identifier</label>
                         <input type="text" name="identifier" class="w-full rounded border-gray-300" placeholder="A1" required>
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-medium mb-1">Tekst</label>
+                        <label class="block text-xs font-medium mb-1 text-gray-900 dark:text-white">Tekst</label>
                         <input type="text" name="choice_text" class="w-full rounded border-gray-300" required>
                     </div>
                     <div class="flex items-center gap-2">

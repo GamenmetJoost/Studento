@@ -60,4 +60,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Category::class, 'category_user');
     }
+
+    /**
+     * Quiz attempts made by the user.
+     */
+    public function quizAttempts()
+    {
+        return $this->hasMany(QuizAttempt::class);
+    }
 }
