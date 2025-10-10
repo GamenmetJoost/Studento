@@ -70,9 +70,13 @@
                                 total: 50, 
                                 unlocked: {{ $has50Badge ? 'true' : 'false' }} 
                             }">
-                            <img src="{{ asset('images/badges/fastthinkerbadge.png') }}"
-                                alt="Answer Hero Badge"
-                                class="w-16 h-16 rounded-full border-2 {{ $has50Badge ? 'border-green-500' : 'border-gray-400 opacity-60' }}">
+                            <span class="w-16 h-16 rounded-full border-2 {{ $has50Badge ? 'border-green-500' : 'border-gray-400 opacity-60' }} flex items-center justify-center overflow-hidden">
+                                <img src="{{ asset('images/badges/fastthinkerbadge.png') }}"
+                                    alt="Answer Hero Badge"
+                                    class="w-full h-full object-contain filter dark:filter-none"
+                                    style="filter: invert(1);"
+                                >
+                            </span>
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Answer Hero</span>
                         </div>
 
@@ -86,9 +90,13 @@
                                 total: 10, 
                                 unlocked: {{ $hasQuizMasterBadge ? 'true' : 'false' }} 
                             }">
-                            <img src="{{ asset('images/badges/quizkingbadge.png') }}"
-                                alt="Quiz Master Badge"
-                                class="w-16 h-16 rounded-full border-2 {{ $hasQuizMasterBadge ? 'border-yellow-400' : 'border-gray-400 opacity-60' }}">
+                            <span class="w-16 h-16 rounded-full border-2 {{ $hasQuizMasterBadge ? 'border-yellow-400' : 'border-gray-400 opacity-60' }} flex items-center justify-center overflow-hidden">
+                                <img src="{{ asset('images/badges/quizkingbadge.png') }}"
+                                    alt="Quiz Master Badge"
+                                    class="w-full h-full object-contain filter dark:filter-none"
+                                    style="filter: invert(1);"
+                                >
+                            </span>
                             <span class="mt-2 text-sm text-gray-700 dark:text-gray-300">Quiz Master</span>
                         </div>
                     </div>
