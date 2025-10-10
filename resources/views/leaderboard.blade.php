@@ -32,7 +32,7 @@
                     <!-- Leaderboard tabel -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                            <thead class="bg-primary_blue dark:bg-primary_blue">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Student</th>

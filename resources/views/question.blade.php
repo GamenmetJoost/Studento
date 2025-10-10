@@ -40,7 +40,7 @@
                 <input type="hidden" name="question_id" value="{{ $currentQuestion->id }}">
                 <input type="hidden" name="vraag" value="{{ $vraagNummer }}">
                 <button type="submit" class="px-3 py-1 rounded text-sm font-medium transition
-                    {{ $isMarked ? 'bg-amber-500 hover:bg-amber-600 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600' }}">
+                    {{ $isMarked ? 'bg-amber-500 hover:bg-primary-orange text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600' }}">
                     {{ $isMarked ? 'Gemarkeerd ✱' : 'Markeren' }}
                 </button>
             </form>
@@ -62,7 +62,7 @@
                             <input type="radio" name="answer" value="{{ $choice->id }}" class="hidden peer" @checked($selected == $choice->id) onchange="this.form.submit()">
                             <div class="w-full py-3 px-4 rounded-lg border transition shadow-sm
                                 peer-checked:border-blue-600 peer-checked:ring-2 peer-checked:ring-blue-300
-                                {{ $selected == $choice->id ? 'bg-blue-50 border-blue-600' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300' }}
+                                {{ $selected == $choice->id ? 'bg-blue-200 dark:bg-blue-400 border-primary_blue' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:border-blue-300' }}
                                 text-gray-900 dark:text-white">
                                 <span class="font-semibold mr-2">{{ $choice->identifier }}</span> {{ $choice->choice_text }}
                             </div>
@@ -92,7 +92,7 @@
         <div class="mt-8 flex justify-between items-center w-full max-w-2xl">
             @if($vraagNummer > 1)
                 <a href="{{ route('toetsen.category', ['category_id' => $category->id, 'vraag' => $vraagNummer - 1]) }}" 
-                   class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                   class="px-4 py-2 bg-primary_pink text-white rounded hover:bg-gray-600">
                     ← Vorige vraag
                 </a>
             @else
@@ -101,7 +101,7 @@
 
             @if($vraagNummer < $questions->count())
                 <a href="{{ route('toetsen.category', ['category_id' => $category->id, 'vraag' => $vraagNummer + 1]) }}" 
-                   class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                   class="px-4 py-2 bg-primary_blue text-white rounded hover:bg-gray-600">
                     Volgende vraag →
                 </a>
             @else
