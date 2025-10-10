@@ -12,20 +12,20 @@
                 <!-- Dagelijkse vragen + huidige vragenlijst -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <a href="{{ url('/stats') }}" 
-                       class="bg-primary_blue text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
-                        Dagelijkse Vragen
+                       class="bg-[#39B9EC] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
+                        Statistieken
                     </a>
                     <a href="{{ url('/leaderboard') }}" 
-                       class="bg-primary_pink text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
+                       class="bg-[#E72B76] text-white p-8 rounded-xl shadow-md text-center font-semibold hover:opacity-90 transition">
                         Leaderboard
                     </a>
                 </div>
 
                 <!-- Welkomstbericht -->
                 <div class="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-xl shadow text-center">
-                    <p class="text-lg font-semibold mb-2">Zo te zien ben je nog erg nieuw!</p>
+                    <p class="text-lg font-semibold mb-2">Welkom bij studento!</p>
                     <p class="text-gray-600 dark:text-gray-300">
-                        Begin met een vragenlijst zodat ik je meer informatie kan tonen.
+                        Begin met een vragenlijst zodat we je voortgang kunnen bijhouden en je de beste leerervaring kunnen bieden.
                     </p>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     @csrf
                     <div class="mb-6 grid grid-cols-1 gap-3">
                         @php
-                            $uniqueCategories = $categories->unique('category')->values();
+                            $uniqueCategories   = $categories->unique('category')->values();
                         @endphp
                         @foreach($uniqueCategories as $index => $category)
                             @php
@@ -100,7 +100,7 @@
                     <div class="flex justify-end">
                         <button 
                             type="submit"
-                            class="px-5 py-2 bg-primary_blue text-white rounded-lg hover:bg-primary_pink transition"
+                            class="px-5 py-2 bg-[#39B9EC] text-white rounded-lg hover:bg-[#E72B76] transition"
                         >
                             Opslaan & Sluiten
                         </button>

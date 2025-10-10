@@ -1,1 +1,1 @@
-<img src="https://static.wixstatic.com/media/810012_b1db43cbfd68456186bc8b33d79b3786~mv2.jpg" alt="Studento Logo" {{ $attributes }}>
+<img src="https://static.wixstatic.com/media/5df7e6_d98c513573524d6b9e5de1136f0cad49~mv2.jpg/v1/crop/x_0,y_73,w_1277,h_1140/fill/w_280,h_250,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Jubileumlogo_JPG_Wit.jpg" alt="Studento Logo" {{ $attributes }}>
