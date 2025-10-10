@@ -34,7 +34,7 @@
             <div class="w-full lg:w-1/3 flex flex-col gap-6">
                 <!-- Categories lijst -->
                 <div class="bg-white dark:bg-gray-800 dark:text-white p-6 rounded-xl shadow">
-                    <div class="text-center mb-6 font-semibold text-lg">Categorieën</div>
+                    <div class="text-center mb-6 font-semibold text-lg">Onderwerpen</div>
                     <div class="grid grid-cols-2 gap-4">
                         @php
                             $colors = ['#39B9EC', '#E72B76', '#CCD626', '#F2B300'];
